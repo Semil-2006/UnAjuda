@@ -1,85 +1,71 @@
-from flask import Flask, Blueprint, render_template, request, redirect, url_for, session, flash
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, redirect, render_template, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from banco_dados_logi import Usuario, Banco
 
-app = Flask(_name_)
-app.secret_key = 'sua_chave_secreta_aqui'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///usuarios.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app = Flask(__name__)
+app.secret_key = 'chave_secreta'
 
-db = SQLAlchemy(app)
+engine = create_engine('sqlite:///usuarios.db')
+Banco.metadata.bind = engine
+DBSession = sessionmaker(bind=engine)
+db_session = DBSession()
 
-main = Blueprint('main', _name_)
-
-class Usuario(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(150), nullable=False, unique=True)
-    senha = db.Column(db.String(150), nullable=False)
-
-@main.route('/registrar', methods=['GET', 'POST'])
-def registrar():
-    if request.method == 'POST':
-        nome = request.form['nome']
-        senha = request.form['senha']
-        confirmar_senha = request.form['confirmar_senha']
-
+class AuthController:
+    def registrar_usuario(self, email, senha, confirmar_senha):
         if senha != confirmar_senha:
-            flash('As senhas não coincidem. Tente novamente.')
-            return redirect(url_for('main.registrar'))
+            return "As senhas não coincidem"
 
-        usuario_existente = Usuario.query.filter_by(nome=nome).first()
+        usuario_existente = db_session.query(Usuario).filter_by(email=email).first()
         if usuario_existente:
-            flash('Usuário já existe. Escolha outro nome.')
-            return redirect(url_for('main.registrar'))
+            return "Usuário já cadastrado"
 
-        nova_senha = generate_password_hash(senha, method='sha256')
-        novo_usuario = Usuario(nome=nome, senha=nova_senha)
+        senha_hash = generate_password_hash(senha)
+        novo_usuario = Usuario(nome=email.split('@')[0], email=email, senha=senha_hash)
+        db_session.add(novo_usuario)
+        db_session.commit()
 
-        try:
-            db.session.add(novo_usuario)
-            db.session.commit()
-            flash('Conta criada com sucesso!')
-            return redirect(url_for('main.login'))
-        except:
-            flash('Erro ao criar conta. Tente novamente.')
-            return redirect(url_for('main.registrar'))
+        session['usuario_id'] = novo_usuario.id
+        return redirect('/login')
 
-    return render_template('registrar.html')
-
-@main.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        nome = request.form['nome']
-        senha = request.form['senha']
-
-        usuario = Usuario.query.filter_by(nome=nome).first()
+    def autenticar_usuario(self, email, senha):
+        usuario = db_session.query(Usuario).filter_by(email=email).first()
 
         if not usuario or not check_password_hash(usuario.senha, senha):
-            flash('Nome de usuário ou senha incorretos.')
-            return redirect(url_for('main.login'))
+            return "Credenciais inválidas"
 
         session['usuario_id'] = usuario.id
-        flash('Login realizado com sucesso!')
-        return redirect(url_for('main.pagina_inicial'))
+        return redirect('/pagina-principal')
 
+controller = AuthController()
+
+@app.route('/')
+def inicio():
+    return redirect('/registro')
+
+@app.route('/registro', methods=['GET', 'POST'])
+def registro():
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
+        confirmar_senha = request.form['confirmar_senha']
+        return controller.registrar_usuario(email, senha, confirmar_senha)
+    return render_template('registro.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
+        return controller.autenticar_usuario(email, senha)
     return render_template('login.html')
 
-@main.route('/pagina_inicial')
-def pagina_inicial():
+@app.route('/pagina-principal')
+def pagina_principal():
     if 'usuario_id' not in session:
-        flash('Por favor, faça login para acessar esta página.')
-        return redirect(url_for('main.login'))
+        return redirect('/login')
+    return render_template('pagina-principal.html')
 
-    return "Bem-vindo à página inicial!"
-
-@main.route('/logout')
-def logout():
-    session.pop('usuario_id', None)
-    flash('Logout realizado com sucesso!')
-    return redirect(url_for('main.login'))
-
-app.register_blueprint(main)
-
-if _name_ == '_main_':
-    db.create_all()
+if __name__ == '__main__':
     app.run(debug=True)
