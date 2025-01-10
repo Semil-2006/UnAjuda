@@ -18,11 +18,6 @@
 </head>
 <body>
     <h1>Cadastro</h1>
-
-    <p>Entre com:</p>
-    <button onclick="window.location.href='/auth/google'">Entrar com Google</button>
-    <br><br>
-
     <form action="/cadastro" method="POST" onsubmit="return validatePassword()">
         <label for="username">Nome de Usuário:</label>
         <br>
@@ -45,6 +40,10 @@
         <br><br>
 
         <button type="submit">Cadastrar</button>
+        <br><br>
     </form>
+
+    <p>Já é usuario? <a href="{{ url_for('login') }}" class="btn">Login</a></p>
+
 </body>
 </html>
