@@ -1,0 +1,42 @@
+
+.footer{
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%);
+    height: 400px;
+    margin-top: 80px;
+}
+
+.footer .duvidas-contatos{
+    width: 100%;
+    height: 93%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer .duvidas-contatos h2{
+    font-size: 2rem;
+}
+.footer .duvidas-contatos .contatos p{
+    font-size: 1.2rem;
+    padding: 15px 0;
+}
+
+.footer .duvidas-contatos .contatos p i{
+    padding: 0 15px 0 0;
+}
+
+.footer .duvidas-contatos .duvidas a{
+    display: flex;
+    font-size: 1.2rem;
+    padding: 15px 0;
+    text-decoration:underline;
+    color: black;
+}
+
+.direitos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}

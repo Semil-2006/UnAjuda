@@ -1,25 +1,49 @@
-from sqlalchemy import create_engine, Column, String, Integer
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
-Banco = declarative_base()
+import sqlite3
+import bcrypt
 
 
-class Usuario(Banco):
-    __tablename__ = 'usuarios'
+def inicializar_banco_de_dados(nome_arquivo='usuario.db'):
+    with sqlite3.connect(nome_arquivo) as conexao:
+        cursor = conexao.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS usuario (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT NOT NULL,
+                email TEXT NOT NULL UNIQUE,
+                senha TEXT NOT NULL
+            )
+        ''')
+        conexao.commit()
+    return sqlite3.connect(nome_arquivo, check_same_thread=False)
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    nome = Column(String(50), nullable=False)
-    email = Column(String(100), unique=True, nullable=False)
-    senha = Column(String(100), nullable=False)
-
-    def __repr__(self):
-        return f"<Usuario(nome='{self.nome}', email='{self.email}')>"
 
 
-engine = create_engine('sqlite:///usuarios.db')
+def adicionar_usuario(conexao, nome, email, senha):
+    cursor = conexao.cursor()
+    senha_hash = bcrypt.hashpw(senha.encode(), bcrypt.gensalt())
+    try:
+        cursor.execute('''
+            INSERT INTO usuario (nome, email, senha)
+            VALUES (?, ?, ?)
+        ''', (nome, email, senha_hash))
+        conexao.commit()
+        print(f"Usuário '{nome}' adicionado com sucesso!")
+    except sqlite3.IntegrityError as e:
+        print(f"Erro ao adicionar o usuário '{nome}': {e}")
 
-Banco.metadata.create_all(engine)
 
-Session = sessionmaker(bind=engine)
-session = Session()
+def obter_usuarios(conexao):
+    cursor = conexao.cursor()
+    cursor.execute('SELECT id, nome, email FROM usuario')
+    return cursor.fetchall()
+
+
+def obter_usuario_por_email(conexao, email):
+    cursor = conexao.cursor()
+    cursor.execute('SELECT * FROM usuario WHERE email = ?', (email,))
+    return cursor.fetchone()
+
+
+def fechar_conexao(conexao):
+    if conexao:
+        conexao.close()

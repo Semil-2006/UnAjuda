@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style/pagina_cadastro/pagina-de-cadastro.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <script>
+        const passwordField = document.getElementById('password');
+        function validatePassword() {
+            const password = passwordField.value;
+            const valid = password.length >= 6 &&
+                /[a-z]/.test(password) &&
+                /[A-Z]/.test(password) &&
+                /\d/.test(password);
+            passwordField.setCustomValidity(valid ? '' : 'A senha deve conter pelo menos 6 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um número.');
+            return valid;
+        }
+    </script>
+</head>
+<body>
+    <form action="/cadastro" method="POST" onsubmit="return validatePassword()">
+        <h1>Cadastro</h1>
+        <label for="username">Nome de Usuário:</label>
+        <br>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <label for="password">Senha:</label>
+        <br>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+
+        <label for="confirm_password">Repetir Senha:</label>
+        <br>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+        <br><br>
+
+        <button type="submit">Cadastrar</button>
+        <br><br>
+        <p>Já possui uma conta? <a href="login.html" class="btn">Entrar</a></p>
+    </form>
+
+    
+
+</body>
+</html>
+
+

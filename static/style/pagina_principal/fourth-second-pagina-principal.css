@@ -1,0 +1,33 @@
+.fourth-section{
+    margin-top: 170px;
+}
+
+.image-fourth-section{
+    display: flex;
+}
+.text-fourth-section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 117px;
+}
+.text-fourth-section p{
+    padding-bottom: 170px;
+    font-size: 2rem;
+}
+.text-fourth-section i{
+    margin-right: 15px;
+}
+
+.titulo-quem-somos{
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: "UNB-BOLD";
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.texto-quem-somos{
+    font-size: 1.5rem;
+    text-align: center;
+}

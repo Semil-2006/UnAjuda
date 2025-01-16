@@ -1,0 +1,10 @@
+.third-section{
+    padding-top: 102px;
+}
+
+.third-section .third-section__img{
+    background-color: red;
+    background-size: 10%;
+    background-repeat: no-repeat;
+    height: 100px;
+}

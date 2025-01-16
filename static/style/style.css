@@ -1,0 +1,24 @@
+@import url(pagina_principal/header_pagina_principal.css);
+@import url(pagina_principal/first-section-pagina-principal.css);
+@import url(pagina_principal/second-section-pagina-principal.css);
+@import url(pagina_principal/third-section-pagina-principal.css);
+@import url(pagina_principal/fourth-second-pagina-principal.css);
+@import url(pagina_principal/footer-pagina-principal.css);
+@import url(pagina_principal/media-queries-pagina-principal.css);
+
+:root{
+    --cor-principal: #A318FF;
+}
+.center{
+    margin: 0 13%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: "UNB";
+    src: url(../font/UnB-Office_Regular.ttf);
+}
+@font-face {
+    font-family: "UNB-BOLD";
+    src: url(../font/UnB-Office_Bold.ttf);
+}
