@@ -1,0 +1,99 @@
+@media (max-width: 1600px){
+    .titulo-first-section input{
+        font-size: 1.7rem;
+    }    
+    
+}    
+
+@media (max-width: 1400px){
+
+    .header .nav-links .registro{
+        margin-left: 1em;
+    }    
+
+    .titulo-first-section{
+        font-size: 3rem;
+    }    
+
+    .titulo-first-section input{
+        padding: 2% 3%;
+        font-size: 1.5rem;
+        width: 90%;
+    }    
+
+    .image-first-section svg{
+        width: 100%;
+    }    
+
+}
+
+@media (max-width: 1200px){
+    .header .nav-links a{
+        display: none;
+    }
+
+    .header .nav-links .nav-mobile{
+        display: flex;
+    }
+
+    .titulo-first-section{
+        font-size: 2rem;
+    }  
+}
+
+@media (max-width: 1000px){
+    .container-first-section{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image-first-section{
+        display: none;
+    }
+
+    .titulo-first-section h1{
+        font-size: 5rem;
+        width: 100%;
+        margin-top: 100px;
+        text-align: center;
+        text-wrap: wrap;
+    }
+
+    .titulo-first-section input{
+        width: 100%;
+        font-size: 2rem;
+    }
+
+    .center{
+        margin: 0 80%;
+    }
+}
+
+
+@media (max-width: 700px){
+    .titulo-first-section h1{
+        font-size: 3rem;
+    }
+
+    .titulo-first-section input{
+        font-size: 1.5rem;
+    }
+
+    .center{
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 450px){
+    .titulo-first-section h1{
+        font-size: 2.3rem;
+    }
+
+    .titulo-first-section input{
+        font-size: 1rem;
+    }
+
+}
+
+
+

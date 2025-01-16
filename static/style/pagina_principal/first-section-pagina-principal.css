@@ -1,0 +1,39 @@
+.first-section{
+    width: 100%;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%);
+}
+
+.container-first-section{
+    height: calc(100vh - 130px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-first-section{
+    font-size: 3rem;
+    width: 90%;
+}
+
+.image-first-section{
+    margin-top: -100px;
+    width: 80%;
+    display: flex;
+    justify-content: end;
+}
+
+.image-first-section svg{
+    width: 100%;
+}
+
+.titulo-first-section input{
+    margin-top: 70px;
+    border-radius: 85px;
+    padding: 4% 5%;
+    font-size: 1.5rem;
+    outline: none;
+    font-weight: bold;
+    border: 0;
+    width: 90%;
+}
