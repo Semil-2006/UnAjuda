@@ -25,7 +25,7 @@
     cursor: pointer;
 }
 
-.header .nav-links .registro{
+.header .nav-links .registro-header-btn{
     background-color: black;
     padding: 20px 80px;
     border-radius: 10px;
@@ -37,7 +37,7 @@
     color: white;
 }
 
-.login {
+.login-header-btn{
     border-radius: 10px;
     padding: 20px 100px;
     border: 0px solid black;
@@ -56,12 +56,12 @@
     display: none;
 }
 
-.login:hover{
+.login-header-btn:hover{
     background-color: #8216ca;
     transition: 0.6s;
 }
 
-.header .nav-links .registro:hover{
+.header .nav-links .registro-header-btn:hover{
     background-color: rgba(0, 0, 0, 0.18);
     transition: 0.4s;
 }
