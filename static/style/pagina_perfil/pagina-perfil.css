@@ -1,0 +1,28 @@
+.main-perfil{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%)
+}
+
+.main-perfil-logo{
+    padding: 2em 0;
+}
+
+.main-perfil-container{
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    height: 70%;
+    justify-content: space-evenly;
+}
+
+.first-section-perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.second-section-perfil{
+    width: 70%;
+}
