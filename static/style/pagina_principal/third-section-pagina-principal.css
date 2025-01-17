@@ -1,10 +1,12 @@
 .third-section{
-    padding-top: 102px;
+    margin-top: 12em;
 }
 
 .third-section .third-section__img{
-    background-color: red;
-    background-size: 10%;
-    background-repeat: no-repeat;
-    height: 100px;
+    width: 100%;
+    display: flex;
+}
+
+.third-section .third-section__img img{
+    width: 25%;
 }

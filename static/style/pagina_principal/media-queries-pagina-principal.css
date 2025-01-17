@@ -21,10 +21,15 @@
         width: 90%;
     }    
 
-    .image-first-section svg{
-        width: 100%;
-    }    
+}
 
+@media (max-width: 1266px){
+    .cards .textos-cards p strong{
+        font-size: 1.3rem;
+    }
+    .cards .textos-cards p{
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 1200px){
@@ -32,7 +37,7 @@
         display: none;
     }
 
-    .header .nav-links .nav-mobile{
+    .header .nav-links .nav-mobile a{
         display: flex;
     }
 
@@ -64,19 +69,37 @@
         font-size: 2rem;
     }
 
-    .center{
-        margin: 0 80%;
+    .cards-container{
+        justify-content: center;
+        flex-wrap: wrap;
+        display: flex;
+    }
+
+    .cards{
+        padding: 0;
     }
 }
 
 
 @media (max-width: 700px){
-    .titulo-first-section h1{
-        font-size: 3rem;
+
+    .cards-medalhas-container{
+        flex-direction: column;
+        gap: 15em;
     }
 
     .titulo-first-section input{
         font-size: 1.5rem;
+    }
+
+    .third-section .third-section__img img{
+        width: 70%;
+        padding: 1em 0;
+    }
+    .third-section .third-section__img{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .center{
@@ -84,9 +107,61 @@
     }
 }
 
+@media (max-width: 600px){
+
+    .footer{
+        width: 100%;
+    }
+
+    .direitos p{
+        padding: 0 0 2em 0;
+    }
+
+    .duvidas {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .duvidas-contatos{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-nav{
+        height: 90px;
+    }
+
+    .titulo-first-section h1{
+        font-size: 2.1em;
+    }
+
+    .fa-user{
+        font-size: 2em;
+    }
+    .cards-container{
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .cards{
+        width: 100%;
+    }
+
+    .cards .textos-cards p strong{
+        font-size: 1em;
+    }
+    .cards .textos-cards p{
+        padding: 0 1em 2em 1em;
+        font-size: 1.5em;
+    }
+}
+
 @media (max-width: 450px){
     .titulo-first-section h1{
-        font-size: 2.3rem;
+        font-size: 1.5em;
     }
 
     .titulo-first-section input{

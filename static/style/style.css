@@ -8,10 +8,19 @@
 
 :root{
     --cor-principal: #A318FF;
+    --cor-ouro: #FFD700;
+    --cor-prata: #C0C0C0;
+    --cor-bronze :#CD7F32;
 }
 .center{
     margin: 0 13%;
     height: 100%;
+}
+
+@media (max-width: 1000px){
+    .center{
+        margin: 0 6%;
+    }
 }
 
 @font-face {

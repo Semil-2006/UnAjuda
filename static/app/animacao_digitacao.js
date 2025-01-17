@@ -15,7 +15,7 @@ const escrever = () => {
     titulo.innerHTML += '|'
 
     i++
-    setTimeout(escrever, 80)
+    setTimeout(escrever, 60)
 
   } 
 }

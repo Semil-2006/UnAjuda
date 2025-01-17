@@ -1,24 +1,31 @@
-.fourth-section{
-    margin-top: 170px;
+.cards-medalhas-container{
+    margin: 15em 0 8em 0;
+    display: flex;
+    gap: 7em;
+}
+.cards-medalhas-container .cards-medalhas{
+    text-align: center;
 }
 
-.image-fourth-section{
-    display: flex;
+.cards-medalhas-container .cards-medalhas .cards-titulo-medalhas{
+    padding: 1.2em 0;
 }
-.text-fourth-section{
-    display: flex;
-    flex-direction: column;
-    margin-top: 117px;
+.cards-medalhas-container .cards-medalhas:nth-child(2){
+    margin-top: -5em;
 }
-.text-fourth-section p{
-    padding-bottom: 170px;
-    font-size: 2rem;
+.cards-medalhas-container .cards-medalhas .cards-icone-medalhas i{
+    font-size: 7rem;
+    margin-bottom: 0.4em;
 }
-.text-fourth-section i{
-    margin-right: 15px;
+
+.cards-medalhas-container .cards-medalhas .cards-paragrafo-medalhas i{
+    padding: 0 0 1em 0;
+    font-size: 1.4em;
+    color: var(--cor-ouro);
 }
 
 .titulo-quem-somos{
+    text-align: center;
     font-size: 3rem;
     font-weight: bold;
     font-family: "UNB-BOLD";

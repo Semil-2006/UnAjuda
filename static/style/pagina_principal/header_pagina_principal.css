@@ -43,8 +43,16 @@
     border: 0px solid black;
 }
 
-.nav-mobile{
-    font-size: 4rem;
+.fa-user{
+    font-size: 2.5em;
+    border-radius: 50%;
+    border: 5px solid black;
+    padding: 0.3em;
+    color: black;
+}
+
+.nav-mobile a{
+    cursor: pointer;
     display: none;
 }
 
