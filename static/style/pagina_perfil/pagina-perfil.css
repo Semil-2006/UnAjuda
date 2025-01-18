@@ -1,7 +1,11 @@
+#editar-foto{
+    display: none;
+}
+
 .main-perfil{
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%)
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%);
 }
 
 .main-perfil-logo{
@@ -9,20 +13,97 @@
 }
 
 .main-perfil-container{
+    padding: 3em;
     display: flex;
     background-color: white;
     border-radius: 20px;
     height: 70%;
-    justify-content: space-evenly;
 }
+
 
 .first-section-perfil{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.foto-perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 0;
+}
+
+.foto-perfil img{
+    margin-bottom: 1em;
+    width: 200px;
+    height: 200px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+
+.informacoes-usuarios p{
+    padding: 1em 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/*SECOND SECTION*/
+
 .second-section-perfil{
-    width: 70%;
+    width: 100%;
+    height: 100%;
+}
+
+.second-section-perfil textarea{
+    margin-top: 55px;
+    width: 100%;
+    padding: 1em 1em 10em 1em;
+    border: 2px solid var(--cor-principal);
+    border-radius: 20px;
+    outline: none;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+}
+
+.second-section-perfil .textos-informacoes-pessoal-usuarios p{
+    padding: 1em 0;
+}
+
+.botoes-footer{
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.botoes-footer a{
+    padding: 0 2em;
+    margin: 0 2em;
+}
+
+.second-section-perfil textarea::placeholder{
+    position: absolute;
+    top: 1em; 
+    left: 1em;
+}
+
+.botoes-footer a:nth-last-child(2){
+    background-color: rgb(228, 228, 228);
+    padding: 0.7em 3em;
+    border-radius: 10px;
+    color: black;
+}
+.botoes-footer a:nth-last-child(1){
+    background-color: var(--cor-principal);
+    padding: 0.7em 3em;
+    border-radius: 10px;
+    color: white;
+}
+
+.botoes-footer a:nth-last-child(2) i{
+    padding: 0 0.7em 0 0;
+    font-size: 0.9em;
 }
