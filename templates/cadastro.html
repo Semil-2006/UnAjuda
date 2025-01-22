@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style/pagina_cadastro/pagina-de-cadastro.css">
+    <link rel="stylesheet" href="../static/style/reset.css">
+    <link rel="stylesheet" href="../static/style/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>UnAjuda - Cadastro</title>
     <script>
         const passwordField = document.getElementById('password');
         function validatePassword() {
@@ -19,33 +21,32 @@
     </script>
 </head>
 <body>
-    <form action="/cadastro" method="POST" onsubmit="return validatePassword()">
-        <h1>Cadastro</h1>
-        <label for="username">Nome de Usuário:</label>
-        <br>
-        <input type="text" id="username" name="username" required>
-        <br><br>
-
-        <label for="email">Email:</label>
-        <br>
-        <input type="email" id="email" name="email" required>
-        <br><br>
-
-        <label for="password">Senha:</label>
-        <br>
-        <input type="password" id="password" name="password" required>
-        <br><br>
-
-        <label for="confirm_password">Repetir Senha:</label>
-        <br>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-        <br><br>
-
-        <button type="submit">Cadastrar</button>
-        <br><br>
-        <p>Já possui uma conta? <a href="login.html" class="btn">Entrar</a></p>
-    </form>
-
+    <main class="main__cadastro">
+        <div class="cadastro__container">
+            <div class="login">
+                <h1>Já possui uma conta?</h1>
+                <a href="login.html" class="btn">Entrar</a>
+            </div>
+            <div class="cadastro">
+                <form action="/cadastro" method="POST" onsubmit="return validatePassword()">
+                    <h1>Criar conta</h1>
+                    <input class="cadastro__cadastro" type="text" id="username" name="username" required placeholder="Nome de Usuário">
+                    <br><br><br>
+                    <input class="cadastro__cadastro" type="email" id="email" name="email" required placeholder="Email">
+                    <br><br><br>
+                    <input class="cadastro__cadastro" type="password" id="password" name="password" required placeholder="Senha">
+                    <br><br><br>
+                    <input class="cadastro__cadastro" type="password" id="confirm_password" name="confirm_password" required placeholder="Confirmar Senha">
+                    <br><br><br><br>
+                    <div>
+                        <a class="cadastro__criar" href=" ">CRIAR CONTA</a>
+                        <br><br>
+                    </div>
+            </div>
+        </div>
+        </form>
+    </main>
+        
     
 
 </body>

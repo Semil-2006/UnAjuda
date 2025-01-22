@@ -1,6 +1,124 @@
 /* Estilos para a página de cadastro */
 
-body {
+.main__cadastro{
+    display: flex;
+    background-color: #d4d4d4;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.cadastro__container{
+    display:flex;
+    justify-content: space-between;
+    width: 70%;
+    background-color: #fff;
+    height: 70%;
+    border-radius: 48px;
+}
+.login {
+    background-image: linear-gradient(#A318FF,#A74FE1);
+    border-radius: 48px 114px 114px 48px;
+    width: 55%;
+    align-items: center;
+    text-align: center;
+}
+.login h1{
+    padding-top: 40%;
+    color: #fff;
+    font-size: 3rem;
+    padding-bottom: 1.1em;
+}
+.login .btn{
+    background-color: #fff;
+    color: #000;
+    border: none;
+    outline: none;
+    font-size: 1.02rem;
+    border-radius: 35px;
+    padding: 0.8em 3em;
+    font-weight: bold;
+}
+.cadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border:2px solid red; */
+    text-align: center;
+    padding-left:9.1em;
+    padding-right: 9.1em;
+}
+.cadastro h1{
+    margin-top: -20px;
+    margin-bottom: 40px;
+}
+.cadastro .cadastro__cadastro{
+    background-color: #f3f3f3;
+    border: none;
+    outline: none;
+    width: 25em;
+    height: 2.4em;
+    padding: 1em 1em;
+    font-size: 1.02rem;
+    border-radius: 7px;
+    font-weight: bold;
+}
+.cadastro .cadastro__criar{
+    background-color: #A318FF;
+    color: #fff;
+    border: none;
+    outline: none;
+    width: 25em;
+    height: 2.8em;
+    padding: 0.8em 6.4em;
+    font-size: 1.3rem;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -86,7 +204,7 @@ a:hover {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     body {
         padding: 20px;
     }
@@ -102,4 +220,4 @@ a:hover {
     p {
         font-size: 1rem;
     }
-}
+} */ 
