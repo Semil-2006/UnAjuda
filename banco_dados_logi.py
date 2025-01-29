@@ -20,12 +20,14 @@ def inicializar_banco_de_dados(nome_arquivo='usuario.db'):
 
 def adicionar_usuario(conexao, nome, email, senha):
     cursor = conexao.cursor()
-    senha_hash = bcrypt.hashpw(senha.encode(), bcrypt.gensalt())
+    print(senha)
+   # senha_hash = bcrypt.hashpw(senha.encode(), bcrypt.gensalt())
+    print("aaaaaaa")
     try:
         cursor.execute('''
             INSERT INTO usuario (nome, email, senha)
             VALUES (?, ?, ?)
-        ''', (nome, email, senha_hash))
+        ''', (nome, email, senha))
         conexao.commit()
         print(f"Usuário '{nome}' adicionado com sucesso!")
     except sqlite3.IntegrityError as e:

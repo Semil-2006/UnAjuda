@@ -5,6 +5,7 @@ import sqlite3
 import os
 from datetime import timedelta
 from functools import wraps
+from time import sleep
 
 unajuda = Flask(__name__)
 unajuda.secret_key = os.getenv('FLASK_SECRET_KEY', 'chave_secreta_segura')
@@ -42,6 +43,8 @@ def cadastro():
         senha = request.form.get('password')
         confirmar_senha = request.form.get('confirm_password')
 
+        print(f" nome: {nome} Email: {email} senha {senha}")
+
         if not nome or not email or not senha or not confirmar_senha:
             flash("Todos os campos são obrigatórios!", "error")
             return redirect('/cadastro')
@@ -56,6 +59,7 @@ def cadastro():
 
         try:
             hashed_senha = bcrypt.hashpw(senha.encode(), bcrypt.gensalt())
+            print("ta caindo aqui")
             adicionar_usuario(get_db(), nome, email, hashed_senha)
             flash("Cadastro realizado com sucesso! Faça login.", "success")
             return redirect('/login')
@@ -65,6 +69,7 @@ def cadastro():
 
     return render_template('cadastro.html')
 
+
 @unajuda.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -73,6 +78,7 @@ def login():
 
         if not email or not senha:
             flash("Email e senha são obrigatórios.", "error")
+            sleep(5)
             return redirect('/login')
 
         usuario = obter_usuario_por_email(get_db(), email)
