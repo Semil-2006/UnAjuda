@@ -44,6 +44,7 @@
     .titulo-first-section{
         font-size: 2rem;
     }  
+
 }
 
 @media (max-width: 1000px){
@@ -153,6 +154,13 @@
     .cards .textos-cards p{
         padding: 0 1em 2em 1em;
         font-size: 1.5em;
+    }
+
+    .login form .input-container input{
+        padding: 0.4em 1em 0.4em 0.7em;
+    }
+    .cadastro form .input-container input{
+        padding: 0.4em 1em 0.4em 0.7em;
     }
 }
 

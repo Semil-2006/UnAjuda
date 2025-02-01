@@ -6,9 +6,52 @@
     <link rel="stylesheet" href="../static/style/reset.css">
     <link rel="stylesheet" href="../static/style/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ec4ddeaf59.js" crossorigin="anonymous"></script>
     <title>UnAjuda - Cadastro</title>
+</head>
+<body>
+    <main class="main__cadastro">
+        <div class="cadastro__container">
+            <div class="cadastro">
+                <form action="/cadastro" method="POST" onsubmit="return validatePassword()">
+                    <h1>Criar conta</h1>
+                    <div class="input-container">
+                        <div class="input-container-email">
+
+                            <input class="cadastro__cadastro" type="text" id="username" name="username" required placeholder="Nome de Usuário">
+
+                        </div><!--input-container-email-->
+                        <div class="input-container-email">
+
+                            <input class="cadastro__cadastro" type="email" id="email" name="email" required placeholder="123456789@aluno.unb.br">
+
+                        </div><!--input-container-email-->
+                        
+                        <div class="input-container-senha">
+
+                            <input class="cadastro__cadastro" type="password" id="password" name="password" required placeholder="Senha"><i class="fa-eye fa-regular" id="olho1"></i>
+                        </div><!--input-container-senha-->
+                        <div class="input-container-senha">
+
+                            <input class="cadastro__cadastro" type="password" id="confirm_password" name="confirm_password" required placeholder="Confirmar Senha"><i class="fa-eye fa-regular" id="olho2"></i>
+                        </div><!--input-container-senha-->
+                        
+
+                    </div><!--input-container-->
+                    <div class="botoes-container-cadastro">
+                        <a class="cadastro__criar" href="cadastro">CRIAR CONTA</a>
+                        <p>Já possui uma conta? <a href="login.html" class="btn"> Entrar</a></p>
+                    </div><!--botoes-container-cadastro-->
+            </div>
+        </div>
+        </form>
+    </main>
+        
     <script>
         const passwordField = document.getElementById('password');
+        const passwordField02 = document.getElementById('confirm_password');
+        const olhoMostrarSenha01 = document.getElementById('olho1');
+        const olhoMostrarSenha02 = document.getElementById('olho2');
         function validatePassword() {
             const password = passwordField.value;
             const valid = password.length >= 6 &&
@@ -18,36 +61,22 @@
             passwordField.setCustomValidity(valid ? '' : 'A senha deve conter pelo menos 6 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um número.');
             return valid;
         }
+
+        olhoMostrarSenha01.addEventListener('click', function() {
+            if(passwordField.type == 'text'){
+                passwordField.type = 'password';
+            }else{
+                passwordField.type = 'text'
+            }
+        });
+        olhoMostrarSenha02.addEventListener('click', function() {
+            if(passwordField02.type == 'text'){
+                passwordField02.type = 'password';
+            }else{
+                passwordField02.type = 'text'
+            }
+        });
     </script>
-</head>
-<body>
-    <main class="main__cadastro">
-        <div class="cadastro__container">
-            <div class="login">
-                <h1>Já possui uma conta?</h1>
-                <a href="login.html" class="btn">Entrar</a>
-            </div>
-            <div class="cadastro">
-                <form action="/cadastro" method="POST" onsubmit="return validatePassword()">
-                    <h1>Criar conta</h1>
-                    <input class="cadastro__cadastro" type="text" id="username" name="username" required placeholder="Nome de Usuário">
-                    <br><br><br>
-                    <input class="cadastro__cadastro" type="email" id="email" name="email" required placeholder="Email">
-                    <br><br><br>
-                    <input class="cadastro__cadastro" type="password" id="password" name="password" required placeholder="Senha">
-                    <br><br><br>
-                    <input class="cadastro__cadastro" type="password" id="confirm_password" name="confirm_password" required placeholder="Confirmar Senha">
-                    <br><br><br><br>
-                    <div>
-                        <a class="cadastro__criar" href=" ">CRIAR CONTA</a>
-                        <br><br>
-                    </div>
-            </div>
-        </div>
-        </form>
-    </main>
-        
-    
 
 </body>
 </html>

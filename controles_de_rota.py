@@ -63,7 +63,7 @@ def cadastro():
             flash("Ocorreu um erro ao processar sua solicitação. Tente novamente.", "error")
             return redirect('/cadastro')
 
-    return render_template('cadastro.html')
+    return render_template('/cadastro')
 
 @unajuda.route('/login', methods=['GET', 'POST'])
 def login():
@@ -89,7 +89,7 @@ def login():
         flash(f"Bem-vindo, {usuario[1]}!", "success")
         return redirect('/')
 
-    return render_template('login.html')
+    return render_template('/login')
 
 @unajuda.route('/logout')
 def logout():

@@ -1,223 +1,74 @@
-/* Estilos para a página de cadastro */
-
-.main__cadastro{
-    display: flex;
-    background-color: #d4d4d4;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 .cadastro__container{
-    display:flex;
-    justify-content: space-between;
-    width: 70%;
-    background-color: #fff;
-    height: 70%;
-    border-radius: 48px;
-}
-.login {
-    background-image: linear-gradient(#A318FF,#A74FE1);
-    border-radius: 48px 114px 114px 48px;
-    width: 55%;
-    align-items: center;
-    text-align: center;
-}
-.login h1{
-    padding-top: 40%;
-    color: #fff;
-    font-size: 3rem;
-    padding-bottom: 1.1em;
-}
-.login .btn{
-    background-color: #fff;
-    color: #000;
-    border: none;
-    outline: none;
-    font-size: 1.02rem;
-    border-radius: 35px;
-    padding: 0.8em 3em;
-    font-weight: bold;
-}
-.cadastro{
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%);
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border:2px solid red; */
-    text-align: center;
-    padding-left:9.1em;
-    padding-right: 9.1em;
-}
-.cadastro h1{
-    margin-top: -20px;
-    margin-bottom: 40px;
-}
-.cadastro .cadastro__cadastro{
-    background-color: #f3f3f3;
-    border: none;
-    outline: none;
-    width: 25em;
-    height: 2.4em;
-    padding: 1em 1em;
-    font-size: 1.02rem;
-    border-radius: 7px;
-    font-weight: bold;
-}
-.cadastro .cadastro__criar{
-    background-color: #A318FF;
-    color: #fff;
-    border: none;
-    outline: none;
-    width: 25em;
-    height: 2.8em;
-    padding: 0.8em 6.4em;
-    font-size: 1.3rem;
-    border-radius: 7px;
-    font-weight: bold;
 }
 
+.cadastro{
+    border-radius: 5px;
+    background: rgba(255,255,255,0.3);
+    padding: 2em;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(163, 24, 255, 1) 100%);
+.cadastro form{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    color: #333;
 }
 
-form {
-    background: #fff;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    max-height: 700px;
+.cadastro form h1{
+    margin-bottom: 20px;
+}
+
+.cadastro form .input-container input{
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    padding: 0.4em 9em 0.4em 0.7em;
+    background-color: transparent;
     
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: #8216ca;
+.input-container-senha, .input-container-email{
+    margin: 2em 0 1em 0;
+   border-radius: 5px;
+   background-color: rgba(255,255,255,0.2);
+}
+
+.input-container-email{
+    display: flex;
+    flex-direction: column;
+}
+
+.botoes-container-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.botoes-container-cadastro .cadastro__criar{
+    background-color: var(--cor-principal);
+    color: white;
+    width: 100%;
     text-align: center;
-    margin-bottom: 30px;
+    padding: 0.7em 0;
+    font-size: 1.3rem;
+    border-radius: 7px;
+    margin: 1em 0;
 }
 
-label {
-    display: block;
-    font-size: 1rem;
-    margin-bottom: 2px;
-    color: #555;
+.botoes-container-cadastro p a{
+    color: var(--cor-principal);
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-input:focus {
-    border-color: #8216ca;
-    outline: none;
-    box-shadow: 0 0 5px rgba(130, 22, 202, 0.5);
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #8216ca;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
+.input-container-senha #olho1, #olho2{
+    color: rgba(0,0,0,0.7);
+    padding-right: 0.3em;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 2px;
+    font-size: 1.2rem;
 }
-
-button:hover {
-    background-color: #5e1192;
-}
-
-p {
-    text-align: center;
-    margin-top: 20px;
-}
-
-a {
-    color: #8216ca;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Responsividade */
-/* @media (max-width: 768px) {
-    body {
-        padding: 20px;
-    }
-
-    form {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-} */ 
