@@ -81,6 +81,49 @@
     }
 }
 
+@media (max-width: 800px){
+    .main-perfil .center .main-perfil-container{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 2em;
+    }
+    .second-section-perfil .informacoes-pessoal-usuarios{
+        width: 100%;
+    }
+
+    .second-section-perfil .informacoes-pessoal-usuarios .botoes-footer{
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .second-section-perfil .informacoes-pessoal-usuarios .botoes-footer a{
+        width: 100%;
+        text-align: center;
+        margin: 1em 0;
+    }
+
+    .textos-informacoes-pessoal-usuarios{
+        text-align: center;
+    }
+
+    .first-section-perfil, .second-section-perfil{
+        width: 100vw;
+    }
+
+    .main-editar-perfil .center{
+        margin: auto 5%;
+    }
+
+    .confirmar-informacoes h2{
+        text-align: center;
+    }
+
+}
+
 
 @media (max-width: 700px){
 
@@ -161,6 +204,10 @@
     }
     .cadastro form .input-container input{
         padding: 0.4em 1em 0.4em 0.7em;
+    }
+
+    .main-editar-perfil .main-editar-perfil-container{
+        padding: 2em 1em;
     }
 }
 

@@ -6,6 +6,7 @@
 @import url(pagina_principal/footer-pagina-principal.css);
 @import url(pagina_principal/media-queries-pagina-principal.css);
 @import url(pagina_perfil/pagina-perfil.css);
+@import url(editar_pagina_perfil/editar_pagina_perfil.css);
 
 :root{
     --cor-principal: #A318FF;

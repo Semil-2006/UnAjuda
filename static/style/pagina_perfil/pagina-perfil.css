@@ -1,6 +1,6 @@
 .main-perfil{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%);
 }
 
@@ -14,12 +14,11 @@
     justify-content: space-between;
     background-color: white;
     border-radius: 20px;
-    height: 70%;
 }
 
 
 .first-section-perfil{
-    width: 30vh;
+    width: 30%;
     display: flex;
     justify-content: center;
 }
@@ -38,7 +37,6 @@
     background-color: gray;
     border-radius: 50%;
 }
-
 
 .informacoes-usuarios p{
     padding: 1em 0;
@@ -80,6 +78,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: end;
+    width: 100%;
 }
 
 .botoes-footer a{

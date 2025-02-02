@@ -1,0 +1,100 @@
+.main-editar-perfil{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%);
+}
+
+
+.main-editar-perfil-logo{
+    padding: 2em 0;
+}
+
+
+.img-editar-perfil{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.main-editar-perfil-container{
+    background-color: white;
+    padding: 3em;
+    border-radius: 24px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.editar-informacoes, .confirmar-informacoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.editar-informacoes h2{
+    padding-bottom: 1em;
+    font-size: 40px;
+}
+
+.editar-arquivo-perfil, .editar-arquivo-perfil input, .editar-arquivo-perfil button{
+    cursor: pointer;
+}
+
+#label-editar-arquivo-foto-perfil{
+    background:transparent;
+    border: none;
+    font-size: 18px;
+    color: white;
+}
+.editar-arquivo-perfil{
+    padding: 1em 2em;
+    border-radius: 8px;
+    background-color: var(--cor-principal);
+    margin: 1em 0;
+    font-size: 18px;
+    color: white;
+}
+
+.editar-arquivo-perfil button i{
+    padding-right: 0.5em;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+.inputs-editar-perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.inputs-editar-perfil input, .confirmar-informacoes input{
+    outline: none;
+    border: none;
+    border:2px solid rgba(163, 24, 255, 0.3);
+    width: 100%;
+    border-radius: 8px;
+    padding: 1em 1.3em;
+    margin: 1em 0;
+}
+
+.confirmar-informacoes button{
+    background-color: var(--cor-principal);
+    border: none;
+    border-radius: 18px;
+    width: 100%;
+    padding: 1em 0;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
+
+.confirmar-informacoes button:hover{
+    background-color: rgba(163, 24, 255, 0.7);
+    transition: 0.3s;
+}
