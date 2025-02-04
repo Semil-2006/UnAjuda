@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="../static/style/pagina_login/pagina-de-login.css">
     <link rel="stylesheet" href="../static/style/reset.css">
     <link rel="stylesheet" href="../static/style/style.css">
-    <script src="https://kit.fontawesome.com/ec4ddeaf59.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UnAjuda - Login</title>
 </head>
@@ -15,38 +14,28 @@
             <div class="login">  
                 <form action="/login" method="POST">
                     <h1>LOGIN</h1>
-                    <div class="input-container">
-                        <div class="input-container-email">
-
-                            <input class="login__login" type="email" id="email" name="email" required placeholder="123456789@aluno.unb.br">
-                        </div><!--input-container-email-->
-                        <div class="input-container-senha">
-                            <input class="login__senha" type="password" id="password" name="password" required placeholder="Senha"><i class="fa-eye fa-regular" id="olho"></i>
-                        </div><!--input-container-senha-->
-                        <a class="login__esqueceu" href="">Esqueceu sua senha?</a>
-
-                        <div class="botoes-container-login">
-                            <a class="login__entrar" href="">ENTRAR</a>
-                            <p>Não possui uma conta?<a href="cadastro.html" class="btn"> Criar conta</a></p>
+                    <br>
+                        <input class="login__login" type="email" id="email" name="email" required placeholder="Email">
+                        <br><br>
+                        <br>
+                        <input class="login__login" type="password" id="password" name="password" required placeholder="Senha">
+                        <br>
+                        <div class="login__lembrar">
+                            <input type="checkbox" name="lembrar" id="lembrar"><label for="lembrar"> Lembrar-me</label>
                         </div>
+                        <br><br>
+                    <div>
+                        <button type="submit" class="login__entrar">ENTRAR </button>
+                    </div>
+                    <br>
+                        <a class="login__esqueceu" href=" ">Esqueceu sua senha? </a>
                 </form>
+            </div>
+            <div class="cadastro">
+                <h1>Não possui uma conta?</h1>
+                <a href="/cadastro" class="btn">Criar conta</a>
             </div>
         </div>
     </main>
-
-    <script>
-        // MOSTRAR SENHA
-
-        const olhoMostrarSenha = document.getElementById('olho');
-        const inputPassword = document.getElementById('password');
-        olhoMostrarSenha.addEventListener('click', function() {
-            if(inputPassword.type == 'text'){
-                inputPassword.type = 'password';
-            }else{
-                inputPassword.type = 'text'
-            }
-        });
-    </script>
 </body>
 </html>
-
