@@ -26,8 +26,13 @@
                         <a class="login__esqueceu" href="">Esqueceu sua senha?</a>
 
                         <div class="botoes-container-login">
+<<<<<<< Updated upstream
                             <a class="login__entrar" href="">ENTRAR</a>
                             <p>Não possui uma conta?<a href="cadastro.html" class="btn"> Criar conta</a></p>
+=======
+                            <a class="login__entrar" href="" onclick="verificarDominioEmail()">ENTRAR</a>
+                            <p>Não possui uma conta?<a href="/cadastro" class="btn"> Criar conta</a></p>
+>>>>>>> Stashed changes
                         </div>
                 </form>
             </div>
@@ -36,7 +41,10 @@
 
     <script>
         // MOSTRAR SENHA
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         const olhoMostrarSenha = document.getElementById('olho');
         const inputPassword = document.getElementById('password');
         olhoMostrarSenha.addEventListener('click', function() {
@@ -46,7 +54,25 @@
                 inputPassword.type = 'text'
             }
         });
+<<<<<<< Updated upstream
     </script>
 </body>
 </html>
 
+=======
+
+        function verificarDominioEmail(){
+            const verificarEmailUnB = document.querySelector('#email').value;
+            const botaoCriarConta = document.querySelector('.login__entrar');
+            const dominioEmail = verificarEmailUnB.split('@');
+            
+            if(dominioEmail[1] == "aluno.unb.br" || dominioEmail[1] == "unb.br"){
+
+            }else{
+
+            }
+        }
+    </script>
+</body>
+</html>
+>>>>>>> Stashed changes
