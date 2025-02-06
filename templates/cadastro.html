@@ -25,36 +25,25 @@
                         <div class="input-container-email">
 
                             <input class="cadastro__cadastro" type="email" id="email" name="email" required placeholder="123456789@aluno.unb.br">
-<<<<<<< Updated upstream
-=======
-                            <p></p>
->>>>>>> Stashed changes
-
                         </div><!--input-container-email-->
                         
                         <div class="input-container-senha">
 
                             <input class="cadastro__cadastro" type="password" id="password" name="password" required placeholder="Senha"><i class="fa-eye fa-regular" id="olho1"></i>
                         </div><!--input-container-senha-->
-<<<<<<< Updated upstream
                         <div class="input-container-senha">
 
-=======
                         <div class="input-container-senha" id="input-container-senha">
->>>>>>> Stashed changes
                             <input class="cadastro__cadastro" type="password" id="confirm_password" name="confirm_password" required placeholder="Confirmar Senha"><i class="fa-eye fa-regular" id="olho2"></i>
                         </div><!--input-container-senha-->
                         
 
                     </div><!--input-container-->
                     <div class="botoes-container-cadastro">
-<<<<<<< Updated upstream
                         <a class="cadastro__criar" href="cadastro">CRIAR CONTA</a>
                         <p>Já possui uma conta? <a href="login.html" class="btn"> Entrar</a></p>
-=======
                         <a class="cadastro__criar" href="cadastro" onclick="verificarDominioEmail(), confirmarSenhaUsuario()">CRIAR CONTA</a>
                         <p>Já possui uma conta? <a href="/login" class="btn"> Entrar</a></p>
->>>>>>> Stashed changes
                     </div><!--botoes-container-cadastro-->
             </div>
         </div>
@@ -63,11 +52,7 @@
         
     <script>
         const passwordField = document.getElementById('password');
-<<<<<<< Updated upstream
         const passwordField02 = document.getElementById('confirm_password');
-        const olhoMostrarSenha01 = document.getElementById('olho1');
-        const olhoMostrarSenha02 = document.getElementById('olho2');
-=======
         const confirmPasswordField = document.getElementById('confirm_password');
         const olhoMostrarSenha01 = document.getElementById('olho1');
         const olhoMostrarSenha02 = document.getElementById('olho2');
@@ -85,7 +70,6 @@
             }
         })
 
->>>>>>> Stashed changes
         function validatePassword() {
             const password = passwordField.value;
             const valid = password.length >= 6 &&
@@ -104,43 +88,36 @@
             }
         });
         olhoMostrarSenha02.addEventListener('click', function() {
-<<<<<<< Updated upstream
             if(passwordField02.type == 'text'){
                 passwordField02.type = 'password';
             }else{
                 passwordField02.type = 'text'
             }
         });
-    </script>
-
-=======
-            if(confirmPasswordField.type == 'text'){
-                confirmPasswordField.type = 'password';
-            }else{
-                confirmPasswordField.type = 'text'
-            }
-        });
-        
-        function verificarDominioEmail(){
-            const verificarEmailUnB = document.querySelector('#email').value;
-            const botaoCriarConta = document.querySelector('.cadastro__criar');
-            const dominioEmail = verificarEmailUnB.split('@');
-            const verificarNumerosDoEmail = /[0-9]/g;
-            const verificarUsuarioEmail = verificarNumerosDoEmail.test(dominioEmail[0])
-
-            if(verificarUsuarioEmail == true){
-                
-                if(dominioEmail[1] == "aluno.unb.br" || dominioEmail[1] == "unb.br"){
-                    // email do usuario verificado, tudo correto!
-                }else{
-                // utilize o email @aluno.unb.br ou @unb.br
-                }
-            }else{
-                // o email deve ser no formato 123456789@aluno.unb.br ou 123456789@unb.br
-            }
+        if(confirmPasswordField.type == 'text'){
+            confirmPasswordField.type = 'password';
+        }else{
+            confirmPasswordField.type = 'text'
         }
+    
+    function verificarDominioEmail(){
+        const verificarEmailUnB = document.querySelector('#email').value;
+        const botaoCriarConta = document.querySelector('.cadastro__criar');
+        const dominioEmail = verificarEmailUnB.split('@');
+        const verificarNumerosDoEmail = /[0-9]/g;
+        const verificarUsuarioEmail = verificarNumerosDoEmail.test(dominioEmail[0])
 
+        if(verificarUsuarioEmail == true){
+            
+            if(dominioEmail[1] == "aluno.unb.br" || dominioEmail[1] == "unb.br"){
+                // email do usuario verificado, tudo correto!
+            }else{
+            // utilize o email @aluno.unb.br ou @unb.br
+            }
+        }else{
+            // o email deve ser no formato 123456789@aluno.unb.br ou 123456789@unb.br
+        }
+    }
     </script>
->>>>>>> Stashed changes
 </body>
 </html>
