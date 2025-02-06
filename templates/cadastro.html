@@ -40,8 +40,6 @@
 
                     </div><!--input-container-->
                     <div class="botoes-container-cadastro">
-                        <a class="cadastro__criar" href="cadastro">CRIAR CONTA</a>
-                        <p>Já possui uma conta? <a href="login.html" class="btn"> Entrar</a></p>
                         <a class="cadastro__criar" href="cadastro" onclick="verificarDominioEmail(), confirmarSenhaUsuario()">CRIAR CONTA</a>
                         <p>Já possui uma conta? <a href="/login" class="btn"> Entrar</a></p>
                     </div><!--botoes-container-cadastro-->
@@ -94,11 +92,6 @@
                 passwordField02.type = 'text'
             }
         });
-        if(confirmPasswordField.type == 'text'){
-            confirmPasswordField.type = 'password';
-        }else{
-            confirmPasswordField.type = 'text'
-        }
     
     function verificarDominioEmail(){
         const verificarEmailUnB = document.querySelector('#email').value;
