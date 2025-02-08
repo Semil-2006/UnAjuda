@@ -36,3 +36,10 @@
     border: 0;
     width: 90%;
 }
+
+.alert{
+    position: absolute;
+    top: 0;
+    width: 74%;
+    text-align: center;
+}

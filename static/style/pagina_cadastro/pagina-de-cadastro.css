@@ -60,6 +60,8 @@
     font-size: 1.3rem;
     border-radius: 7px;
     margin: 1em 0;
+    border: none;
+    cursor: pointer;
 }
 
 .botoes-container-cadastro p a{

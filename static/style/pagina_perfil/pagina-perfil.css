@@ -44,6 +44,20 @@
     font-size: 1.5rem;
 }
 
+.informacoes-usuarios{
+    display: flex;
+    flex-direction: column;
+}
+
+.informacoes-usuarios a{
+    text-align: center;
+    background-color: red;
+    align-items: center;
+    border-radius: 10px;
+    padding: 1em 0;
+    color: white;
+}
+
 /*SECOND SECTION*/
 
 .second-section-perfil{
@@ -118,4 +132,21 @@
         margin: 0 0 0 2em;
         padding: 0;
     }
+}
+
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+.alert-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
 }

@@ -161,6 +161,7 @@ def logout():
     session.pop('logado', None)
     session.pop('expiracao', None)
     flash("Você saiu da sua conta.", "success")
+    sleep(5)
     return render_template('pagina-principal.html')
 
 if __name__ == '__main__':
