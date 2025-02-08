@@ -8,15 +8,12 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    margin-left: 0.15em;
 }
 .pesquisa__logo{
     width: 18em;
     background-repeat: no-repeat;
     height: 4em;
-    margin-top: -20px;
     cursor: pointer;
-    margin-left: -0.19em;
 }
 .barra__pesquisa{
     border-radius: 85px;
@@ -58,6 +55,10 @@
     margin-left: 4em;
     width: 10em;
     height: 3em;
+}
+.pesquisa__registro:hover{
+    background-color: rgba(0, 0, 0, 0.18);
+    transition: 0.4s;
 }
 .pesquisa{
     background: linear-gradient(0deg, rgba(255,255,255,1) 30%, rgba(163,24,255,1) 100%);
