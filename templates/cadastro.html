@@ -14,7 +14,16 @@
     <main class="main__cadastro">
         <div class="cadastro__container">
             <div class="cadastro">
-                <form action="/cadastro" method="POST" onsubmit="return validatePassword()">
+                <form action="/cadastro" method="POST">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                     <h1>Criar conta</h1>
                     <div class="input-container">
                         <div class="input-container-email">
@@ -40,12 +49,10 @@
 
                     </div><!--input-container-->
                     <div class="botoes-container-cadastro">
-                        <a class="cadastro__criar" href="cadastro" onclick="verificarDominioEmail(), confirmarSenhaUsuario()">CRIAR CONTA</a>
+                        <button class="cadastro__criar" href="/cadastro" onclick="verificarDominioEmail(), validatePassword()">CRIAR CONTA</button>
                         <p>Já possui uma conta? <a href="/login" class="btn"> Entrar</a></p>
                     </div><!--botoes-container-cadastro-->
-            </div>
-        </div>
-        </form>
+                </form>
     </main>
         
     <script>
@@ -85,10 +92,10 @@
             }
         });
         olhoMostrarSenha02.addEventListener('click', function() {
-            if(passwordField02.type == 'text'){
-                passwordField02.type = 'password';
+            if(confirmPasswordField.type == 'text'){
+                confirmPasswordField.type = 'password';
             }else{
-                passwordField02.type = 'text'
+                confirmPasswordField.type = 'text'
             }
         });
     
