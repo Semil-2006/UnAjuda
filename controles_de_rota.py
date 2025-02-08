@@ -11,9 +11,6 @@ unajuda = Flask(__name__)
 unajuda.secret_key = os.getenv('FLASK_SECRET_KEY', 'chave_secreta_segura')
 unajuda.permanent_session_lifetime = timedelta(weeks=1)
 
-
-
-# Banco de Dados
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect('usuario.db', check_same_thread=False)
@@ -42,9 +39,8 @@ unajuda.before_request(make_session_permanent)
 @unajuda.route('/home')
 def home():
     if 'logado' in session and session['logado']:
-        return render_template('alan.html')
+        return render_template('pagina-pricinpal-logado.html')
     else:
-        flash("Você precisa estar logado para acessar esta página.", "error")
         return render_template('pagina-principal.html')
 
 @unajuda.route('/cadastro', methods=['GET', 'POST'])
@@ -110,6 +106,54 @@ def login():
         return redirect('/')
 
     return render_template('login.html')
+
+
+@unajuda.route('/perfil', methods=['GET', 'POST'])
+def pagina_de_perfil():
+    if 'logado' in session and session['logado']:
+        return render_template('pagina-perfil.html')
+    else:
+        flash("Você precisa estar logado para acessar esta página.", "error")
+        return redirect('/login')
+    
+@unajuda.route('/editar-perfil', methods=['GET', 'POST'])
+def editar_perfil():
+    if 'logado' not in session or not session['logado']:
+        flash("Você precisa estar logado para acessar esta página.", "error")
+        return redirect('/login')
+
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        faculdade = request.form.get('faculdade')
+        curso = request.form.get('curso')
+        nova_senha = request.form.get('nova_senha')
+        confirmar_senha = request.form.get('confirmar_senha')
+        telefone = request.form.get('telefone')
+        senha_atual = request.form.get('senha_atual')
+
+        usuario = obter_usuario_por_email(get_db(), session['usuario'])
+        senha_armazenada = usuario[3]
+
+        if not bcrypt.checkpw(senha_atual.encode(), senha_armazenada):
+            flash("Senha atual incorreta.", "error")
+            return redirect('/editar-perfil')
+
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("""
+            UPDATE usuarios SET nome=?, faculdade=?, curso=?, telefone=? WHERE email=?
+        """, (nome, faculdade, curso, telefone, session['usuario']))
+        
+        if nova_senha and nova_senha == confirmar_senha:
+            hashed_senha = bcrypt.hashpw(nova_senha.encode(), bcrypt.gensalt())
+            cursor.execute("UPDATE usuarios SET senha=? WHERE email=?", (hashed_senha, session['usuario']))
+        
+        db.commit()
+        flash("Perfil atualizado com sucesso!", "success")
+        return redirect('/perfil')
+
+    return render_template('editar-pagina-perfil.html')
+
 
 @unajuda.route('/logout')
 def logout():
