@@ -9,8 +9,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90em;
-    margin-left: 5em;
+    width: 75vw;
+
     
 }
 .pergunta{
@@ -18,7 +18,7 @@
     border-radius: 18px;
     background-color: rgba(214, 214, 214, .6);
     margin-top: 2em;
-    width: 80em;
+    width: 66.667vw;
     display: flex;
     flex-direction: column;
 }
@@ -30,7 +30,7 @@
 }
 .pergunta__cabecalho img{
     padding-right: 1em;
-    width: 4em;
+    width: 3.333vw;
 }
 .pergunta__cabecalho a{
     font-weight: bold;
@@ -49,7 +49,7 @@
     padding-top: 0.6em;
 }
 .pergunta__img{
-    width: 60em;
+    width: 50vw;
     margin-left: 10em;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -85,5 +85,5 @@
 }
 .denuncia img{
     padding-right: 0.5em;
-    width: 2.5em;
+    width: 2.083vw;
 }
