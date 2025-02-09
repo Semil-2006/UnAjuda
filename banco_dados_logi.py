@@ -17,15 +17,31 @@ def inicializar_banco_de_dados(nome_arquivo='usuario.db'):
                 foto_perfil TEXT
             )
         ''')
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS pergunta (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                pergunta TEXT NOT NULL,
+                data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS resposta (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_pergunta INTEGER NOT NULL,
+                resposta TEXT NOT NULL,
+                data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (id_pergunta) REFERENCES pergunta(id)
+            )
+        ''')
+
         conexao.commit()
     return sqlite3.connect(nome_arquivo, check_same_thread=False)
 
 
 def adicionar_usuario(conexao, nome, email, senha):
     cursor = conexao.cursor()
-    print(senha)
-   # senha_hash = bcrypt.hashpw(senha.encode(), bcrypt.gensalt())
-    print("aaaaaaa")
     try:
         cursor.execute('''
             INSERT INTO usuario (nome, email, senha)

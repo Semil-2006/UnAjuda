@@ -103,6 +103,8 @@ def login():
 
         session['usuario'] = usuario[1]
         session['logado'] = True
+        session['usuario_id'] = usuario[0]
+        print(session['usuario_id'])
         session['expiracao'] = (datetime.now() + timedelta(weeks=1)).strftime('%Y-%m-%d %H:%M:%S')
         flash(f"Bem-vindo, {usuario[1]}!", "success")
         return redirect('/')
@@ -183,6 +185,11 @@ def editar_perfil():
         return redirect('/perfil')
 
     return render_template('editar-pagina-perfil.html')
+
+@unajuda.route('/pesquisa')
+def pesquisa():
+    return render_template('pagina-pesquisa.html')
+
 
 
 @unajuda.route('/logout')

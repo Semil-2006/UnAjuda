@@ -1,5 +1,9 @@
 const botaoDeBusca = document.getElementById('buscarPerguntas');
 
+function executarBusca() {
+    window.location.href = '/pesquisa';
+}
+
 botaoDeBusca.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             if(botaoDeBusca.value.length <= 2){
