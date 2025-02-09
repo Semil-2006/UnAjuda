@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, redirect, flash, session, g
 from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email
-import bcrypt
 import sqlite3
-import os
-from datetime import timedelta, datetime
+from datetime import datetime
 from time import sleep
+import os
+from werkzeug.utils import secure_filename
+from datetime import timedelta
+import bcrypt
 
 
 unajuda = Flask(__name__)
@@ -111,11 +113,21 @@ def login():
 @unajuda.route('/perfil', methods=['GET', 'POST'])
 def pagina_de_perfil():
     if 'logado' in session and session['logado']:
-        return render_template('pagina-perfil.html')
+        usuario = obter_usuario_por_email(inicializar_banco_de_dados(), session['usuario'])
+        return render_template('pagina-perfil.html',usuario=usuario)
     else:
         flash("Você precisa estar logado para acessar esta página.", "error")
         return redirect('/login')
-    
+
+def arquivo_permitido(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+unajuda.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+unajuda.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+
 @unajuda.route('/editar-perfil', methods=['GET', 'POST'])
 def editar_perfil():
     if 'logado' not in session or not session['logado']:
@@ -130,23 +142,41 @@ def editar_perfil():
         confirmar_senha = request.form.get('confirmar_senha')
         telefone = request.form.get('telefone')
         senha_atual = request.form.get('senha_atual')
+        foto_perfil = request.files.get('foto_perfil')
 
-        usuario = obter_usuario_por_email(get_db(), session['usuario'])
+        usuario = obter_usuario_por_email(inicializar_banco_de_dados(), session['usuario'])
         senha_armazenada = usuario[3]
 
         if not bcrypt.checkpw(senha_atual.encode(), senha_armazenada):
             flash("Senha atual incorreta.", "error")
             return redirect('/editar-perfil')
 
-        db = get_db()
+        db = inicializar_banco_de_dados()
         cursor = db.cursor()
-        cursor.execute("""
-            UPDATE usuarios SET nome=?, faculdade=?, curso=?, telefone=? WHERE email=?
-        """, (nome, faculdade, curso, telefone, session['usuario']))
+        parametros_atualizacao = []
+
+        if nome and nome != usuario[1]:
+            parametros_atualizacao.append(f"nome='{nome}'")
+        if faculdade and faculdade != usuario[4]:
+            parametros_atualizacao.append(f"faculdade='{faculdade}'")
+        if curso and curso != usuario[5]:
+            parametros_atualizacao.append(f"curso='{curso}'")
+        if telefone and telefone != usuario[6]:
+            parametros_atualizacao.append(f"telefone='{telefone}'")
+        
+        if foto_perfil and foto_perfil.filename:
+            nome_arquivo = secure_filename(foto_perfil.filename)
+            caminho_foto = os.path.join(unajuda.config['UPLOAD_FOLDER'], nome_arquivo)
+            foto_perfil.save(caminho_foto)
+            parametros_atualizacao.append(f"foto_perfil='{nome_arquivo}'")
+        
+        if parametros_atualizacao:
+            query = "UPDATE usuario SET " + ", ".join(parametros_atualizacao) + " WHERE email=?"
+            cursor.execute(query, (session['usuario'],))
         
         if nova_senha and nova_senha == confirmar_senha:
-            hashed_senha = bcrypt.hashpw(nova_senha.encode(), bcrypt.gensalt())
-            cursor.execute("UPDATE usuarios SET senha=? WHERE email=?", (hashed_senha, session['usuario']))
+            senha_criptografada = bcrypt.hashpw(nova_senha.encode(), bcrypt.gensalt())
+            cursor.execute("UPDATE usuario SET senha=? WHERE email=?", (senha_criptografada, session['usuario']))
         
         db.commit()
         flash("Perfil atualizado com sucesso!", "success")

@@ -10,12 +10,15 @@ def inicializar_banco_de_dados(nome_arquivo='usuario.db'):
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nome TEXT NOT NULL,
                 email TEXT NOT NULL UNIQUE,
-                senha TEXT NOT NULL
+                senha TEXT NOT NULL,
+                faculdade TEXT,
+                curso TEXT,
+                telefone TEXT,
+                foto_perfil TEXT
             )
         ''')
         conexao.commit()
     return sqlite3.connect(nome_arquivo, check_same_thread=False)
-
 
 
 def adicionar_usuario(conexao, nome, email, senha):
@@ -44,7 +47,6 @@ def obter_usuario_por_email(conexao, email):
     cursor = conexao.cursor()
     cursor.execute('SELECT * FROM usuario WHERE email = ?', (email,))
     return cursor.fetchone()
-
 
 def fechar_conexao(conexao):
     if conexao:
