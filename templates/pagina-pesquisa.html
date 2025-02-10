@@ -13,7 +13,7 @@
         <div class="center">
             <div class="pesquisa__header">
                 <div class="pesquisa__logo">
-                    <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
+                    <a href="/"><img src="../static/img/Logo_minimizada.svg" alt=""></a>
                 </div><!--logo-->
                 <div>
                     <!-- Campo de pesquisa com envio -->
@@ -45,7 +45,7 @@
                 <div class="ha__perguntas">
                 {% if perguntas %}
                     {% for pergunta in perguntas %}
-                    
+
                         <div class="caixa__pergunta">
                             <h2>{{ pergunta.nome_usuario }}</h2>  <!-- Apenas o nome do usuário aqui -->
                             <p><a href="/resposta/{{ pergunta.id }}">{{ pergunta.pergunta }}</a></p> <!-- Link na pergunta -->
