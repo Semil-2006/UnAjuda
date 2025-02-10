@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect, flash, session, g
+from flask import Flask, render_template, request, redirect, flash, session, g, jsonify
 from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email
 import sqlite3
-from banco_dados_logi import obter_perguntas_com_respostas_e_nome_usuario
+from banco_dados_logi import obter_perguntas_com_respostas_e_nome_usuario,adicionar_pergunta,adicionar_resposta
 from datetime import datetime
 from time import sleep
 import os
@@ -81,6 +81,29 @@ def cadastro():
             return redirect('/cadastro')
 
     return render_template('cadastro.html')
+
+@unajuda.route('/pergunta', methods=['GET', 'POST'])
+def pagina_pergunta():
+    if request.method == 'POST':
+        if 'usuario_id' not in session:
+            flash("Você precisa estar logado para fazer uma pergunta.", "error")
+            return redirect('/login')
+
+        pergunta = request.form.get('pergunta')
+        usuario_id = session['usuario_id']
+
+        if not pergunta:
+            flash("A pergunta não pode estar vazia.", "error")
+            return redirect('/pergunta')
+
+        db = get_db()
+        adicionar_pergunta(db, usuario_id, pergunta)
+        flash("Pergunta enviada com sucesso!", "success")
+        return redirect('/')
+
+    return render_template('pagina-perguntas.html')
+
+
 
 
 @unajuda.route('/login', methods=['GET', 'POST'])
@@ -188,6 +211,22 @@ def editar_perfil():
         return redirect('/perfil')
 
     return render_template('editar-pagina-perfil.html')
+
+def responder_pergunta(pergunta_id):
+    if 'usuario_id' not in session:
+        return jsonify({"success": False, "message": "Usuário não autenticado!"}), 401
+
+    data = request.get_json()
+    resposta_texto = data.get("resposta")
+
+    if not resposta_texto:
+        return jsonify({"success": False, "message": "A resposta não pode estar vazia!"}), 400
+
+    usuario_id = session['usuario_id']
+    db = get_db()
+    adicionar_resposta(db, pergunta_id, usuario_id, resposta_texto)
+
+    return jsonify({"success": True, "message": "Resposta adicionada com sucesso!"})
 
 
 @unajuda.route('/pesquisa')

@@ -18,7 +18,7 @@
                 <div>
                     <!-- Campo de pesquisa com envio -->
                     <form action="/pesquisa" method="get">
-                        <input class="barra__pesquisa" type="text" id="campoPesquisa" name="query" value="{{ request.args.get('query', '') }}" placeholder="Digite a sua dúvida">
+                        <input class="barra__pesquisa" type="search" id="buscarPerguntas" name="query" value="{{ request.args.get('query', '') }}" placeholder="Digite a sua dúvida">
                     </form>
                 </div>
                 <div class="nav-links">
@@ -32,7 +32,6 @@
                         <a href="/login" class="pesquisa__login">LOGIN</a>
                         <a href="/cadastro" class="pesquisa__registro">REGISTRE-SE</a>
                     {% else %}
-                        <!-- Aqui você pode adicionar um link para o perfil ou algo relacionado a um usuário logado -->
                         <a class="perfil" href="../templates/pagina-perfil.html"></a>
                     {% endif %}
                 </div><!--nav-links-->
@@ -52,6 +51,7 @@
                     {% endfor %}
                 {% else %}
                     <h2>Não há perguntas disponíveis.</h2>
+                    <a href="/pergunta" class="registro-header-btn">Adicionar Nova Pergunta</a>
                 {% endif %}
             </div>
         </div>
@@ -89,5 +89,7 @@
             campoPesquisa.value = perguntaSalva;
         }
     </script>
+    <script src="../static/app/animacao_digitacao.js"></script>
+    <script src="../static/app/evento_pesquisa.js"></script>
 </body>
 </html>

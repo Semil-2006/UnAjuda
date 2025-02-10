@@ -13,36 +13,44 @@
         <div class="center">
             <div class="pergunta__header">
                 <div class="pergunta__logo">
-                    <a href="pagina-principal.html"><img src="../static/img/Logo_principal.svg" alt=""></a>
+                    <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
                 </div><!--logo-->
                 <div>
-                    <input class="barra__pesquisa" type="text" value="" placeholder="Digite a sua dúvida">
+                    <input class="barra__pesquisa" type="text" placeholder="Digite a sua dúvida">
                 </div>
                 <div class="perfil__pergunta">
-                    <a href="/templates/pagina-perfil.html"><img src="../static/img/Group 22.svg" alt=""></a>
+                    <a href="/perfil"><img src="../static/img/Group 22.svg" alt=""></a>
                 </div>
             </div><!--header-->
         </div><!--centralizar a página-->
     </main>
+
     <section class="pergunta">
         <div class="center">
             <div class="container">
                 <div class="container__enviar">
-                    <div class="container__escrever__pergunta" >
-                        <textarea class="escrever__pergunta" id="" placeholder="DIGITE SUA PERGUNTA"></textarea>
-                    </div>
-                    <div class="container__container">
-                        <div>
-                            <a class="add__foto" href=" "><img src="../static/img/link-solid 1.svg" alt=""></a>
+                    <!-- Formulário para enviar pergunta -->
+                    <form action="/pergunta" method="POST" enctype="multipart/form-data">
+                        <div class="container__escrever__pergunta">
+                            <textarea class="escrever__pergunta" name="pergunta" placeholder="DIGITE SUA PERGUNTA" required></textarea>
                         </div>
-                        <div class="enviar">   
-                            <a href=" " >ENVIAR PERGUNTA</a>
+                        <div class="container__container">
+                            <div>
+                                <label for="foto">
+                                    <img class="add__foto" src="../static/img/link-solid 1.svg" alt="Adicionar Imagem">
+                                </label>
+                                <input type="file" id="foto" name="foto" style="display: none;">
+                            </div>
+                            <div class="enviar">
+                                <button type="submit">ENVIAR PERGUNTA</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-        
+
+
 </body>
 </html>

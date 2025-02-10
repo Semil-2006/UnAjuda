@@ -15,79 +15,151 @@
             <div class="pesquisa__header">
                 <div class="pesquisa__logo">
                     <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
-                </div><!--logo-->
+                </div>
                 <div>
-                    <input class="barra__pesquisa" type="text" value="" placeholder="Digite a sua dúvida">
+                    <input class="barra__pesquisa" type="text" placeholder="Digite a sua dúvida">
                 </div>
                 <div class="nav-links">
-                    <div class="nav-mobile">
-                        <a href="/login"><i class="fa-regular fa-user"></i></a>
-                    </div><!--nav-mobile-->
-                    <a href="/login" class="pesquisa__login">LOGIN</a>
-                    <a href="/cadastro" class="pesquisa__registro">REGISTRE-SE</a>
                     <a class="perfil" href="../templates/pagina-perfil.html"></a>
-                </div><!--nav-links-->
-            </div><!--header-->
-        </div><!--centralizar a página-->
-    </main>
-    <section class="resposta">
-    <div class="center">
-        <div class="resposta__container">
-            <div class="pergunta">
-                <div class="pergunta__cabecalho">
-                    <a class="pergunta__perfil" href="#">
-                        <img src="../static/img/Group 22.svg" alt="">{{ pergunta.nome_usuario }}
-                    </a>
                 </div>
-                <p class="pergunta__texto">{{ pergunta.pergunta }}</p>
-                <img class="pergunta__img" src="../static/img/Group 23.svg" alt="">
-                <textarea name="resposta" placeholder="DIGITE A RESPOSTA"></textarea>
             </div>
+        </div>
+    </main>
 
-            {% if respostas %}
-                {% for resposta in respostas %}
+    <section class="resposta">
+        <div class="center">
+            <div class="resposta__container">
+                <!-- Pergunta Principal -->
                 <div class="pergunta">
                     <div class="pergunta__cabecalho">
                         <a class="pergunta__perfil" href="#">
-                            <img src="../static/img/Group 22.svg" alt="">{{ resposta[1] }}
+                            <img src="../static/img/Group 22.svg" alt="">{{ pergunta.nome_usuario }}
                         </a>
                     </div>
-                    <p class="pergunta__texto">{{ resposta[0] }}</p>
-                    <div class="denuncia">
-                        <a href="#"><img src="../static/img/Denuncia.svg" alt="">DENUNCIAR RESPOSTA</a>
-                    </div>
-                    <textarea name="comentario" placeholder="ADICIONE UM COMENTÁRIO"></textarea>
+                    <p class="pergunta__texto">{{ pergunta.pergunta }}</p>
+                    <img class="pergunta__img" src="../static/img/Group 23.svg" alt="">
                 </div>
-                {% endfor %}
-            {% else %}
-                <h3>Essa pergunta ainda não foi respondida.</h3>
-            {% endif %}
-        </div>
-    </div>
-    </section>
 
+                <!-- Formulário para Responder -->
+                <form id="respostaForm" data-pergunta-id="{{ pergunta.id }}">
+
+                    <textarea id="respostaTextarea" name="resposta" placeholder="DIGITE A RESPOSTA"></textarea>
+                    <button type="submit" class="botao-enviar">ENVIAR RESPOSTA</button>
+
+                </form>
+
+
+                <!-- Respostas -->
+                <div id="respostaContainer">
+                    {% if respostas %}
+                        {% for resposta in respostas %}
+                        <div class="pergunta">
+                            <div class="pergunta__cabecalho">
+                                <a class="pergunta__perfil" href="#">
+                                    <img src="../static/img/Group 22.svg" alt="">{{ resposta[1] }}
+                                </a>
+                            </div>
+                            <p class="pergunta__texto">{{ resposta[0] }}</p>
+                            <div class="denuncia">
+                                <a href="#"><img src="../static/img/Denuncia.svg" alt="">DENUNCIAR RESPOSTA</a>
+                            </div>
+                            <textarea name="comentario" placeholder="ADICIONE UM COMENTÁRIO"></textarea>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <h3>Essa pergunta ainda não foi respondida.</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="center">
             <div class="duvidas-contatos">
                 <div class="contatos">
-
                     <h2>CONTATOS</h2>
                     <p><i class="fa-brands fa-whatsapp"></i>(00) 00000 - 0000</p>
                     <p><i class="fa-regular fa-envelope"></i>UnAjuda@gmail.com</p>
-                </div><!--contatos-->
+                </div>
                 <div class="duvidas">
                     <h2>AJUDA</h2>
                     <a href="#">Dúvidas frequentes</a>
                     <a href="#">Como usar</a>
-                </div><!--duvidas-->
-            </div><!--duvidas-contatos-->
+                </div>
+            </div>
             <div class="direitos">
-                <p>CopyRight <i class="fa-regular fa-copyright"></i> 2024 - All Rights Reseverd - Desenvolvido por equipe UnAjuda</p>
-            </div><!--direitos-->
+                <p>CopyRight <i class="fa-regular fa-copyright"></i> 2024 - All Rights Reserved - Desenvolvido por equipe UnAjuda</p>
+            </div>
+        </div>
+    </footer>
 
-        </div><!--center-->
-    </footer><!--footer-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const respostaForm = document.getElementById("respostaForm");
+    const respostaTextarea = document.getElementById("respostaTextarea");
+    const respostaContainer = document.getElementById("respostaContainer");
+
+    if (!respostaForm) {
+        console.error("Erro: Formulário de resposta não encontrado!");
+        return;
+    }
+
+    respostaForm.addEventListener("submit", async function (event) {
+        event.preventDefault();  // Evita recarregar a página
+
+        const respostaTexto = respostaTextarea.value.trim();
+        if (!respostaTexto) {
+            alert("Digite uma resposta antes de enviar!");
+            return;
+        }
+
+        const perguntaId = respostaForm.getAttribute("data-pergunta-id");
+        if (!perguntaId) {
+            console.error("Erro: ID da pergunta não encontrado!");
+            return;
+        }
+
+        try {
+            const response = await fetch(`/responder/${perguntaId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ resposta: respostaTexto })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Criar um novo elemento para exibir a resposta na tela
+                const novaResposta = document.createElement("div");
+                novaResposta.classList.add("pergunta");
+                novaResposta.innerHTML = `
+                    <div class="pergunta__cabecalho">
+                        <a class="pergunta__perfil" href="#">
+                            <img src="../static/img/Group 22.svg" alt="">Você
+                        </a>
+                    </div>
+                    <p class="pergunta__texto">${respostaTexto}</p>
+                    <div class="denuncia">
+                        <a href="#"><img src="../static/img/Denuncia.svg" alt="">DENUNCIAR RESPOSTA</a>
+                    </div>
+                    <textarea name="comentario" placeholder="ADICIONE UM COMENTÁRIO"></textarea>
+                `;
+
+                respostaContainer.prepend(novaResposta);  // Adiciona a nova resposta no topo
+                respostaTextarea.value = "";  // Limpa o campo de resposta
+            } else {
+                alert("Erro ao enviar resposta: " + result.message);
+            }
+        } catch (error) {
+            console.error("Erro ao enviar resposta:", error);
+            alert("Erro inesperado ao enviar resposta!");
+        }
+    });
+});
+</script>
 
 </body>
 </html>
