@@ -4,6 +4,23 @@
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,24,255,1) 100%);
 }
 
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+.alert-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
 .main-perfil-logo{
     padding: 2em 0;
 }
@@ -15,7 +32,6 @@
     background-color: white;
     border-radius: 20px;
 }
-
 
 .first-section-perfil{
     width: 30%;
@@ -34,7 +50,6 @@
     margin-bottom: 1em;
     width: 200px;
     height: 200px;
-    background-color: gray;
     border-radius: 50%;
 }
 

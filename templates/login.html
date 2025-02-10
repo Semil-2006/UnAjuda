@@ -13,16 +13,16 @@
     <main class="main__login">
         <div class="login__container">
             <div class="login">  
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
                 <form action="/login" method="POST">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                     <h1>LOGIN</h1>
                     <div class="input-container">
                         <div class="input-container-email">
@@ -67,5 +67,6 @@
             }
         }
     </script>
+    <script src="../static/app/retirar_mensagem.js"></script>
 </body>
 </html>

@@ -12,46 +12,57 @@
     <main class="main-editar-perfil">
         <div class="center">
 
-            <div class="main-editar-perfil-logo">
-                <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
-            </div><!--main-editar-perfil-logo-->
-            
-            <div class="main-editar-perfil-container">
-                <div class="editar-informacoes">
-                    <h2>Editar perfil</h2>
-                    <img class="img-editar-perfil" src="../static/img/avatar-default-icon-2048x2048-h6w375ur.png" alt=""> 
-                    <div class="editar-arquivo-perfil">
+            <form method="POST" action="/editar-perfil" class="editar-perfil-form" enctype="multipart/form-data">
 
-                        <input type="file" id="editar-foto-perfil-usuario">
-                        <button id="label-editar-arquivo-foto-perfil">
-                            <i class="fa-solid fa-pen"></i>
-                            Selecione um arquivo
-                        </button>
-                    </div><!--editar-arquivo-perfil--> 
-                    <div class="inputs-editar-perfil">
+                <div class="main-editar-perfil-logo">
+                    <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
+                </div><!--main-editar-perfil-logo-->
+    
+                    <div class="main-editar-perfil-container">
+                        <div class="editar-informacoes">
 
-                        <input type="text" placeholder="Nome do úsuario">
-                        <input type="text" placeholder="Faculdade">
-                        <input type="text" placeholder="Curso">
-                        <input type="text" placeholder="Nova senha">
-                        <input type="text" placeholder="Confirmar nova senha">
-                        <input type="text" placeholder="Telefone">
-                    </div><!--inputs-editar-perfil-->
-                </div><!--editar-informacoes-->
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                            <h2>Editar perfil</h2>
+                            <img class="img-editar-perfil" src="{{ foto_perfil }}"> 
+                            <div class="editar-arquivo-perfil">
 
-                <div class="confirmar-informacoes">
-                    <h2>Para salvar suas alterações, digite a sua senha</h2>
-                    <input type="text" placeholder="Senha atual" required>
-                    <input type="text" placeholder="confirmar senha atual" required>
-
-                    <button class="salvar-alteracoes">Salvar alterações</button>
-                </div><!--confirmar-informacoes-->
-            </div><!--main-editar-perfil-container-->
+                                    <input type="file" id="editar-foto-perfil-usuario" name="fotoPerfil">
+                                    <input id="label-editar-arquivo-foto-perfil" type="submit"><i class="fa-solid fa-pen"></i>Selecione um arquivo
+                            </div><!--editar-arquivo-perfil--> 
+                            <div class="inputs-editar-perfil">
+        
+                                <input type="text" placeholder="Nome do úsuario">
+                                <input type="text" placeholder="Faculdade">
+                                <input type="text" placeholder="Curso">
+                                <input type="text" placeholder="Nova senha">
+                                <input type="text" placeholder="Confirmar nova senha">
+                                <input type="text" placeholder="Telefone">
+                            </div><!--inputs-editar-perfil-->
+                        </div><!--editar-informacoes-->
+        
+                        <div class="confirmar-informacoes">
+                            <h2>Para salvar suas alterações, digite a sua senha</h2>
+                            <input type="text" placeholder="Senha atual" required>
+                            <input type="text" placeholder="confirmar senha atual" required>
+        
+                            <button class="salvar-alteracoes" type="submit">Salvar alterações</button>
+                        </div><!--confirmar-informacoes-->
+                    </div><!--main-editar-perfil-container-->
+            </form>
         </div><!--center-->
 
         
     </main><!--main-perfil-->
 
     <script src="../static/app/enviar_foto_perfil.js"></script>
+    <script src="../static/app/retirar_mensagem.js"></script>
 </body>
 </html>

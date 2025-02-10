@@ -17,7 +17,7 @@
 
                 <div class="nav-links">
                     
-                    <a class="perfil" href="/perfil" style="display: block;"><i class="fa-regular fa-user"></i></a>
+                    <a class="perfil" href="/perfil" style="display: block;"><img src="{{ foto_perfil }}" style="width: 100px; height: 100px; border-radius: 50%;"></a>
 
                 </div><!--nav-links-->
             </div><!--header-->
@@ -26,7 +26,15 @@
 
     <section class="first-section">
         <div class="center">
-
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <div class="container-first-section">
                 <div class="titulo-first-section">
                     <h1 id="titulo_principal">Descubra Respostas com a Comunidade UnAjuda</h1>
@@ -192,5 +200,6 @@
 
     <script src="../static/app/animacao_digitacao.js"></script>
     <script src="../static/app/evento_pesquisa.js"></script>
+    <script src="../static/app/retirar_mensagem.js"></script>
 </body>
 </html>

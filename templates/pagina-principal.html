@@ -26,7 +26,7 @@
 
             <div class="nav-links">
                 <div class="nav-mobile">
-                    <a href="/login"><i class="fa-regular fa-user"></i></a>
+                    <a href="/login"><img src="../static/img/avatar-default-icon.png" alt=""></a>
                 </div><!--nav-mobile-->
                 <a href="/login" class="login-header-btn">LOGIN</a>
                 <a href="/cadastro" class="registro-header-btn">REGISTRE-SE</a>
@@ -205,13 +205,6 @@
 
     <script src="../static/app/animacao_digitacao.js"></script>
     <script src="../static/app/evento_pesquisa.js"></script>
-    <script>
-        setTimeout(function() {
-            const flashMessages = document.querySelectorAll('.alert');
-            flashMessages.forEach(function(message) {
-                message.remove();
-            });
-        }, 3000);
-    </script>
+    <script src="../static/app/retirar_mensagem.js"></script>
 </body>
 </html>

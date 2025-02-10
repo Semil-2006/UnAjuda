@@ -13,10 +13,20 @@
     <main class="main-perfil">
         <div class="center">
 
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        <form action="/testePerfil" method="post">
+
             <div class="main-perfil-logo">
                 <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
             </div><!--main-perfil-logo-->
-
             <div class="main-perfil-container">
 
                 <section class="first-section-perfil">
@@ -24,7 +34,7 @@
                     <div class="perfil-container">
                         <div class="informacoes-usuarios">
                             <div class="foto-perfil">
-                                <img src="../static/img/avatar-default-icon-2048x2048-h6w375ur.png" alt=""> 
+                                <img src="{{ foto_perfil }}" alt=""> 
                             </div>
                             
                             <p id="nome-usuario">nome usuario</p>
@@ -45,15 +55,16 @@
                         </div><!--textos-informacoes-pessoal-usuarios-->
                         <div class="botoes-footer">
                             <a href="/"><i class="fa-solid fa-chevron-left"></i>Voltar</a>
-                            <a href="/editar-perfil">Editar informações</a>
+                            <a href="/testePerfil">Editar informações</a>
                         </div><!--botoes-footer-->
                     </div><!--informacoes-pessoal-usuarios-->
                 </section><!--section-section-perfil-->
             </div><!--main-perfil-container-->
+        </form>
         </div><!--center-->
 
         
     </main><!--main-perfil-->
-    
+    <script src="../static/app/retirar_mensagem.js"></script>
 </body>
 </html>

@@ -178,6 +178,15 @@ def buscar_perguntas_por_palavra_chave(conexao, palavra_chave):
     return perguntas_com_nome_usuario
 
 
+def obter_id_usuario(conexao, email):
+    cursor = conexao.cursor()
+    cursor.execute('SELECT id FROM usuario WHERE email = ?', (email,))
+    resultado = cursor.fetchone()
+    if resultado:
+        return resultado[0]
+    return None
+
+
 def fechar_conexao(conexao):
     if conexao:
         conexao.close()
