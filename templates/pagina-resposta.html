@@ -14,7 +14,7 @@
         <div class="center">
             <div class="pesquisa__header">
                 <div class="pesquisa__logo">
-                    <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
+                    <a href="/"><img src="../static/img/Logo_minimizada.svg" alt=""></a>
                 </div>
                 <div>
                     <input class="barra__pesquisa" type="text" placeholder="Digite a sua dúvida">
@@ -33,24 +33,20 @@
                 <div class="pergunta">
                     <div class="pergunta__cabecalho">
                         <a class="pergunta__perfil" href="#">
-                            <img src="../static/img/Group 22.svg" alt="">{{ pergunta.nome_usuario }}
+                            <img src="../static/img/Group 22.svg" alt="">{{ pergunta['nome_usuario'] }}
                         </a>
                     </div>
-                    <p class="pergunta__texto">{{ pergunta.pergunta }}</p>
+                    <p class="pergunta__texto">{{ pergunta['pergunta'] }}</p>
                     <img class="pergunta__img" src="../static/img/Group 23.svg" alt="">
                 </div>
 
                 <!-- Formulário para Responder -->
                 <div class="resposta__formulario">
-
-                    <form id="respostaForm" data-pergunta-id="{{ pergunta.id }}">
-                        
+                    <form id="respostaForm" data-pergunta-id="{{ pergunta['id'] }}">
                         <textarea id="respostaTextarea" name="resposta" placeholder="DIGITE A RESPOSTA"></textarea>
                         <button type="submit" class="botao-enviar">ENVIAR RESPOSTA</button>
-                        
                     </form>
                 </div>
-
 
                 <!-- Respostas -->
                 <div id="respostaContainer">
@@ -109,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     respostaForm.addEventListener("submit", async function (event) {
-        event.preventDefault();  // Evita recarregar a página
+        event.preventDefault();
 
         const respostaTexto = respostaTextarea.value.trim();
         if (!respostaTexto) {
@@ -135,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const result = await response.json();
 
             if (result.success) {
-                // Criar um novo elemento para exibir a resposta na tela
                 const novaResposta = document.createElement("div");
                 novaResposta.classList.add("pergunta");
                 novaResposta.innerHTML = `
@@ -151,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <textarea name="comentario" placeholder="ADICIONE UM COMENTÁRIO"></textarea>
                 `;
 
-                respostaContainer.prepend(novaResposta);  // Adiciona a nova resposta no topo
-                respostaTextarea.value = "";  // Limpa o campo de resposta
+                respostaContainer.prepend(novaResposta);
+                respostaTextarea.value = "";
             } else {
                 alert("Erro ao enviar resposta: " + result.message);
             }
