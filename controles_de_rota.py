@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, session, g
-from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email,obter_perguntas_com_respostas_e_nome_usuario
+from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email
 import sqlite3
 from banco_dados_logi import obter_perguntas_com_respostas_e_nome_usuario
 from datetime import datetime
