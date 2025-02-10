@@ -23,11 +23,18 @@
                 </div>
                 <div class="nav-links">
                     <div class="nav-mobile">
-                        <a href="/login"><i class="fa-regular fa-user"></i></a>
+                        {% if not session.get('logado') %}
+                            <a href="/login"><i class="fa-regular fa-user"></i></a>
+                        {% endif %}
                     </div><!--nav-mobile-->
-                    <a href="/login" class="pesquisa__login">LOGIN</a>
-                    <a href="/cadastro" class="pesquisa__registro">REGISTRE-SE</a>
-                    <a class="perfil" href="../templates/pagina-perfil.html"></a>
+
+                    {% if not session.get('logado') %}
+                        <a href="/login" class="pesquisa__login">LOGIN</a>
+                        <a href="/cadastro" class="pesquisa__registro">REGISTRE-SE</a>
+                    {% else %}
+                        <!-- Aqui você pode adicionar um link para o perfil ou algo relacionado a um usuário logado -->
+                        <a class="perfil" href="../templates/pagina-perfil.html"></a>
+                    {% endif %}
                 </div><!--nav-links-->
             </div><!--header-->
         </div><!--centralizar a página-->

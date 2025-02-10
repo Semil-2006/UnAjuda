@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, session, g, jsonify
+from flask import Flask, render_template, request, redirect, flash, session, g
 from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email
 import sqlite3
 from banco_dados_logi import obter_perguntas_com_respostas_e_nome_usuario
@@ -256,7 +256,7 @@ def logout():
     session.pop('expiracao', None)
     flash("Você saiu da sua conta.", "success")
     sleep(5)
-    return render_template('pagina-principal.html')
+    return redirect('/')
 
 if __name__ == '__main__':
     inicializar_banco_de_dados('usuario.db')
