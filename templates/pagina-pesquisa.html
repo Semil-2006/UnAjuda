@@ -16,7 +16,7 @@
                     <a href="pagina-principal.html"><img src="../static/img/Logo_principal.svg" alt=""></a>
                 </div><!--logo-->
                 <div>
-                    <input class="barra__pesquisa" type="text" value="" placeholder="Digite a sua dúvida">
+                    <input class="barra__pesquisa" type="text" id="campoPesquisa" value="" placeholder="Digite a sua dúvida">
                 </div>
                 <div class="nav-links">
                     <div class="nav-mobile">
@@ -34,62 +34,20 @@
     <section class="pesquisa">
         <div class="center">
             <div class="container__pergunta">
-                <div class="caixa__pergunta">
-                    <h2>PERGUNTA 01</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at lorem non quam consequat scelerisque gravida at turpis.
-                         Donec blandit auctor nibh. Sed maximus tortor nec dolor pulvinar feugiat.
-                          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                          Praesent ullamcorper dolor sed nunc imperdiet commodo. Phasellus pretium malesuada imperdiet.
-                           Donec faucibus odio nec eros pulvinar, porttitor porta ipsum imperdiet. Mauris ut quam in dolor pharetra blandit non et purus. 
-                        Nullam congue ipsum vitae ipsum 
-                    </p>
-                </div>
-                <div class="caixa__pergunta">
-                    <h2>PERGUNTA 02</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at lorem non quam consequat scelerisque gravida at turpis.
-                         Donec blandit auctor nibh. Sed maximus tortor nec dolor pulvinar feugiat.
-                          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                          Praesent ullamcorper dolor sed nunc imperdiet commodo. Phasellus pretium malesuada imperdiet.
-                           Donec faucibus odio nec eros pulvinar, porttitor porta ipsum imperdiet. Mauris ut quam in dolor pharetra blandit non et purus. 
-                        Nullam congue ipsum vitae ipsum 
-                    </p>
-                </div>
-                <div class="caixa__pergunta">
-                    <h2>PERGUNTA 03</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at lorem non quam consequat scelerisque gravida at turpis.
-                         Donec blandit auctor nibh. Sed maximus tortor nec dolor pulvinar feugiat.
-                          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                          Praesent ullamcorper dolor sed nunc imperdiet commodo. Phasellus pretium malesuada imperdiet.
-                           Donec faucibus odio nec eros pulvinar, porttitor porta ipsum imperdiet. Mauris ut quam in dolor pharetra blandit non et purus. 
-                        Nullam congue ipsum vitae ipsum 
-                    </p>
-                </div>
-                <div class="caixa__pergunta">
-                    <h2>PERGUNTA 04</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at lorem non quam consequat scelerisque gravida at turpis.
-                         Donec blandit auctor nibh. Sed maximus tortor nec dolor pulvinar feugiat.
-                          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                          Praesent ullamcorper dolor sed nunc imperdiet commodo. Phasellus pretium malesuada imperdiet.
-                           Donec faucibus odio nec eros pulvinar, porttitor porta ipsum imperdiet. Mauris ut quam in dolor pharetra blandit non et purus. 
-                        Nullam congue ipsum vitae ipsum 
-                    </p>
-                </div>
-                <div class="caixa__pergunta">
-                    <h2>PERGUNTA 05</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at lorem non quam consequat scelerisque gravida at turpis.
-                         Donec blandit auctor nibh. Sed maximus tortor nec dolor pulvinar feugiat.
-                          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                          Praesent ullamcorper dolor sed nunc imperdiet commodo. Phasellus pretium malesuada imperdiet.
-                           Donec faucibus odio nec eros pulvinar, porttitor porta ipsum imperdiet. Mauris ut quam in dolor pharetra blandit non et purus. 
-                        Nullam congue ipsum vitae ipsum 
-                    </p>
-                </div>
-                <p class="mostrar">MOSTRAR MAIS</p>
+                {% if perguntas %}
+                    {% for pergunta in perguntas %}
+                    <div class="caixa__pergunta">
+                        <h2>{{ pergunta.nome_usuario }}</h2>
+                        <p>{{ pergunta.pergunta }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <h2>Não há mais perguntas disponíveis.</h2>
+                {% endif %}
             </div>
         </div>
-
-
     </section>
+    
     <footer class="footer">
         <div class="center">
             <div class="duvidas-contatos">
@@ -111,5 +69,15 @@
 
         </div><!--center-->
     </footer><!--footer-->
+
+    <script>
+        // Verifique se a pergunta foi salva no localStorage
+        const perguntaSalva = localStorage.getItem('pergunta');
+        if (perguntaSalva) {
+            // Preencha o campo de pesquisa com o valor salvo
+            const campoPesquisa = document.getElementById('campoPesquisa');
+            campoPesquisa.value = perguntaSalva;
+        }
+    </script>
 </body>
 </html>

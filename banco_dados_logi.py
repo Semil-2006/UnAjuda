@@ -5,6 +5,7 @@ import bcrypt
 def inicializar_banco_de_dados(nome_arquivo='usuario.db'):
     with sqlite3.connect(nome_arquivo) as conexao:
         cursor = conexao.cursor()
+        
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS usuario (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,11 +22,13 @@ def inicializar_banco_de_dados(nome_arquivo='usuario.db'):
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS pergunta (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_usuario INTEGER NOT NULL,
                 pergunta TEXT NOT NULL,
-                data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (id_usuario) REFERENCES usuario(id)
             )
         ''')
-
+        
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS resposta (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -38,7 +41,6 @@ def inicializar_banco_de_dados(nome_arquivo='usuario.db'):
 
         conexao.commit()
     return sqlite3.connect(nome_arquivo, check_same_thread=False)
-
 
 def adicionar_usuario(conexao, nome, email, senha):
     cursor = conexao.cursor()
@@ -63,6 +65,81 @@ def obter_usuario_por_email(conexao, email):
     cursor = conexao.cursor()
     cursor.execute('SELECT * FROM usuario WHERE email = ?', (email,))
     return cursor.fetchone()
+
+def adicionar_pergunta(conexao, id_usuario, pergunta):
+    cursor = conexao.cursor()
+    cursor.execute('''
+        INSERT INTO pergunta (id_usuario, pergunta)
+        VALUES (?, ?)
+    ''', (id_usuario, pergunta))
+    conexao.commit()
+    print(f"Pergunta '{pergunta}' adicionada com sucesso por usuário com ID {id_usuario}!")
+
+
+def obter_perguntas_com_nome_usuario(conexao):
+    cursor = conexao.cursor()
+    cursor.execute('''
+        SELECT p.id AS pergunta_id, p.pergunta, u.nome AS nome_usuario
+        FROM pergunta p
+        INNER JOIN usuario u ON p.id_usuario = u.id
+        ORDER BY p.id
+    ''')
+    
+    perguntas = cursor.fetchall()
+    perguntas_com_nome_usuario = []
+    for pergunta in perguntas:
+        pergunta_id = pergunta[0]
+        pergunta_texto = pergunta[1]
+        nome_usuario = pergunta[2]
+        perguntas_com_nome_usuario.append({
+            "pergunta_id": pergunta_id,
+            "pergunta": pergunta_texto,
+            "nome_usuario": nome_usuario
+        })
+    
+    return perguntas_com_nome_usuario
+
+def obter_perguntas_com_respostas_e_nome_usuario(conexao):
+    cursor = conexao.cursor()
+    cursor.execute('''
+        SELECT p.id AS pergunta_id, p.pergunta, u.nome AS nome_usuario, r.id AS resposta_id, r.resposta
+        FROM pergunta p
+        INNER JOIN usuario u ON p.id_usuario = u.id
+        LEFT JOIN resposta r ON p.id = r.id_pergunta
+        ORDER BY p.id
+    ''')
+    
+    perguntas_respostas = {}
+    for row in cursor.fetchall():
+        pergunta_id = row[0]
+        pergunta = row[1]
+        nome_usuario = row[2]
+        resposta_id = row[3]
+        resposta = row[4]
+        
+        if pergunta_id not in perguntas_respostas:
+            perguntas_respostas[pergunta_id] = {
+                "pergunta": pergunta,
+                "nome_usuario": nome_usuario,
+                "respostas": []
+            }
+        
+        if resposta_id is not None:
+            perguntas_respostas[pergunta_id]["respostas"].append(resposta)
+    
+    return perguntas_respostas
+
+
+def adicionar_resposta(conexao, id_pergunta, resposta):
+    cursor = conexao.cursor()
+    cursor.execute('''
+        INSERT INTO resposta (id_pergunta, resposta)
+        VALUES (?, ?)
+    ''', (id_pergunta, resposta))
+    conexao.commit()
+    print(f"Resposta '{resposta}' adicionada à pergunta com ID {id_pergunta}!")
+
+
 
 def fechar_conexao(conexao):
     if conexao:

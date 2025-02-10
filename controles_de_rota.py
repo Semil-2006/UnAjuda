@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, flash, session, g
-from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email
+from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email,obter_perguntas_com_respostas_e_nome_usuario
 import sqlite3
+from banco_dados_logi import obter_perguntas_com_respostas_e_nome_usuario
 from datetime import datetime
 from time import sleep
 import os
@@ -23,6 +24,8 @@ def close_db(exception):
     db = g.pop('db', None)
     if db is not None:
         db.close()
+
+# usuario_id = session.get('usuario_id')
 
 
 def make_session_permanent():
@@ -186,9 +189,26 @@ def editar_perfil():
 
     return render_template('editar-pagina-perfil.html')
 
+
 @unajuda.route('/pesquisa')
 def pesquisa():
-    return render_template('pagina-pesquisa.html')
+    db = get_db()
+    perguntas_respostas = obter_perguntas_com_respostas_e_nome_usuario(db)
+
+    perguntas = []
+    usuario_logado_id = session.get('usuario_id')
+
+    for pergunta_id, dados in perguntas_respostas.items():
+        usuario_id = dados.get('usuario_id')
+        nome_usuario = "Você" if usuario_id == usuario_logado_id else dados['nome_usuario']
+
+        perguntas.append({
+            "id": pergunta_id,
+            "pergunta": dados['pergunta'],
+            "nome_usuario": nome_usuario
+        })
+
+    return render_template('pagina-pesquisa.html', perguntas=perguntas)
 
 
 
