@@ -96,6 +96,7 @@ def cadastro():
 def pagina_pergunta():
     if request.method == 'POST':
         if 'usuario_id' not in session:
+            session['url_antes_login'] = request.url
             flash("Você precisa estar logado para fazer uma pergunta.", "error")
             return redirect('/login')
 
@@ -144,8 +145,8 @@ def login():
         print(session['usuario_id'])
         session['expiracao'] = (datetime.now() + timedelta(weeks=1)).strftime('%Y-%m-%d %H:%M:%S')
         flash(f"Bem-vindo, {usuario[1]}!", "success")
-        return redirect('/')
-
+        url_destino = session.pop('url_antes_login', '/')
+        return redirect(url_destino)
     return render_template('login.html')
 
 
@@ -163,6 +164,7 @@ def pagina_de_perfil():
     
         return render_template('pagina-perfil.html', usuario = usuario)
     else:
+        session['url_antes_login'] = request.url
         flash("Você precisa estar logado para acessar esta página.", "error")
         return redirect('/login')
 
@@ -181,9 +183,10 @@ def testePerfil():
 @unajuda.route('/editar-perfil', methods=['GET', 'POST'])
 def editar_perfil():
 
-    # if 'logado' not in session or not session['logado']:
-    #     flash("Você precisa estar logado para acessar esta página.", "error")
-    #     return redirect('/login')
+    if 'logado' not in session or not session['logado']:
+        session['url_antes_login'] = request.url
+        flash("Você precisa estar logado para acessar esta página.", "error")
+        return redirect('/login')
     
     db = inicializar_banco_de_dados()
     emailLogado = session.get('email_usuario')
@@ -257,6 +260,7 @@ def editar_perfil():
 
 def responder_pergunta(pergunta_id):
     if 'usuario_id' not in session:
+        session['url_antes_login'] = request.url
         return jsonify({"success": False, "message": "Usuário não autenticado!"}), 401
 
     data = request.get_json()
