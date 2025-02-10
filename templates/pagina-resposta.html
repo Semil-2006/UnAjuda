@@ -14,7 +14,7 @@
         <div class="center">
             <div class="pesquisa__header">
                 <div class="pesquisa__logo">
-                    <a href="pagina-principal.html"><img src="../static/img/Logo_principal.svg" alt=""></a>
+                    <a href="/"><img src="../static/img/Logo_principal.svg" alt=""></a>
                 </div><!--logo-->
                 <div>
                     <input class="barra__pesquisa" type="text" value="" placeholder="Digite a sua dúvida">
@@ -31,41 +31,42 @@
         </div><!--centralizar a página-->
     </main>
     <section class="resposta">
-        <div class="center">
-            <div class="resposta__container">
-                <div class="pergunta">
-                    <div class="pergunta__cabecalho">
-                        <a class="pergunta__perfil" href="#"><img src="../static/img/Group 22.svg" alt="">NOME DO USUÁRIO</a>
-                        <!-- <p href="#">NOME DO USUÁRIO</p> -->
-                    </div>
-                    <p class="pergunta__texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at lorem non quam consequat scelerisque gravida at turpis. 
-                        Donec blandit auctor nibh. Sed maximus tortor nec dolor pulvinar feugiat.
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Praesent ullamcorper dolor sed nunc imperdiet commodo. Phasellus pretium malesuada imperdiet. 
-                        Donec faucibus odio nec eros pulvinar, porttitor porta ipsum imperdiet. Mauris ut quam in dolor pharetra blandit non et purus.
-                        Nullam congue ipsum vitae ipsum </p>
-                    <img class="pergunta__img" src="../static/img/Group 23.svg" alt="">
-                    <textarea name="" id="" placeholder="DIGITE A RESPOSTA"></textarea>
+    <div class="center">
+        <div class="resposta__container">
+            <div class="pergunta">
+                <div class="pergunta__cabecalho">
+                    <a class="pergunta__perfil" href="#">
+                        <img src="../static/img/Group 22.svg" alt="">{{ pergunta.nome_usuario }}
+                    </a>
                 </div>
+                <p class="pergunta__texto">{{ pergunta.pergunta }}</p>
+                <img class="pergunta__img" src="../static/img/Group 23.svg" alt="">
+                <textarea name="resposta" placeholder="DIGITE A RESPOSTA"></textarea>
+            </div>
+
+            {% if respostas %}
+                {% for resposta in respostas %}
                 <div class="pergunta">
                     <div class="pergunta__cabecalho">
-                        <a class="pergunta__perfil" href="#"><img src="../static/img/Group 22.svg" alt="">NOME DO USUÁRIO</a>
-                        <!-- <p href="#">NOME DO USUÁRIO</p> -->
+                        <a class="pergunta__perfil" href="#">
+                            <img src="../static/img/Group 22.svg" alt="">{{ resposta[1] }}
+                        </a>
                     </div>
-                    <p class="pergunta__texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at lorem non quam consequat scelerisque gravida at turpis. 
-                        Donec blandit auctor nibh. Sed maximus tortor nec dolor pulvinar feugiat.
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Praesent ullamcorper dolor sed nunc imperdiet commodo. Phasellus pretium malesuada imperdiet. 
-                        Donec faucibus odio nec eros pulvinar, porttitor porta ipsum imperdiet. Mauris ut quam in dolor pharetra blandit non et purus.
-                        Nullam congue ipsum vitae ipsum </p>
+                    <p class="pergunta__texto">{{ resposta[0] }}</p>
                     <div class="denuncia">
                         <a href="#"><img src="../static/img/Denuncia.svg" alt="">DENUNCIAR RESPOSTA</a>
                     </div>
-                    <textarea name="" id="" placeholder="ADIOCIONE UM COMENTÁRIO"></textarea>
+                    <textarea name="comentario" placeholder="ADICIONE UM COMENTÁRIO"></textarea>
                 </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                <h3>Essa pergunta ainda não foi respondida.</h3>
+            {% endif %}
         </div>
+    </div>
     </section>
+
+
     <footer class="footer">
         <div class="center">
             <div class="duvidas-contatos">
@@ -87,5 +88,6 @@
 
         </div><!--center-->
     </footer><!--footer-->
+
 </body>
 </html>

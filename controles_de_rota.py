@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, session, g
+from flask import Flask, render_template, request, redirect, flash, session, g, jsonify
 from banco_dados_logi import inicializar_banco_de_dados, adicionar_usuario, obter_usuario_por_email
 import sqlite3
 from banco_dados_logi import obter_perguntas_com_respostas_e_nome_usuario
@@ -193,7 +193,12 @@ def editar_perfil():
 @unajuda.route('/pesquisa')
 def pesquisa():
     db = get_db()
-    perguntas_respostas = obter_perguntas_com_respostas_e_nome_usuario(db)
+    query = request.args.get('query', '').strip()
+
+    if query:
+        perguntas_respostas = obter_perguntas_com_respostas_e_nome_usuario(db, query)
+    else:
+        perguntas_respostas = obter_perguntas_com_respostas_e_nome_usuario(db)
 
     perguntas = []
     usuario_logado_id = session.get('usuario_id')
@@ -210,6 +215,38 @@ def pesquisa():
 
     return render_template('pagina-pesquisa.html', perguntas=perguntas)
 
+
+@unajuda.route('/resposta/<int:pergunta_id>')
+def pagina_resposta(pergunta_id):
+    db = get_db()
+    perguntas_respostas = obter_perguntas_com_respostas_e_nome_usuario(db)
+
+    if pergunta_id not in perguntas_respostas:
+        flash("Pergunta não encontrada!", "error")
+        return redirect('/pesquisa')
+
+    pergunta = perguntas_respostas[pergunta_id]
+
+    usuario_logado_id = session.get('usuario_id')
+
+    cursor = db.cursor()
+    cursor.execute("""
+        SELECT resposta.resposta, usuario.nome, resposta.id_usuario
+        FROM resposta
+        JOIN usuario ON resposta.id_usuario = usuario.id
+        WHERE resposta.id_pergunta = ?
+        ORDER BY resposta.id DESC
+        LIMIT 5
+    """, (pergunta_id,))
+
+    respostas = cursor.fetchall()
+
+    respostas_formatadas = []
+    for resposta_texto, nome_usuario, usuario_id in respostas:
+        nome_usuario = "Você" if usuario_id == usuario_logado_id else nome_usuario
+        respostas_formatadas.append((resposta_texto, nome_usuario))
+
+    return render_template('pagina-resposta.html', pergunta=pergunta, respostas=respostas_formatadas)
 
 
 @unajuda.route('/logout')
