@@ -41,12 +41,15 @@
                 </div>
 
                 <!-- Formulário para Responder -->
-                <form id="respostaForm" data-pergunta-id="{{ pergunta.id }}">
+                <div class="resposta__formulario">
 
-                    <textarea id="respostaTextarea" name="resposta" placeholder="DIGITE A RESPOSTA"></textarea>
-                    <button type="submit" class="botao-enviar">ENVIAR RESPOSTA</button>
-
-                </form>
+                    <form id="respostaForm" data-pergunta-id="{{ pergunta.id }}">
+                        
+                        <textarea id="respostaTextarea" name="resposta" placeholder="DIGITE A RESPOSTA"></textarea>
+                        <button type="submit" class="botao-enviar">ENVIAR RESPOSTA</button>
+                        
+                    </form>
+                </div>
 
 
                 <!-- Respostas -->

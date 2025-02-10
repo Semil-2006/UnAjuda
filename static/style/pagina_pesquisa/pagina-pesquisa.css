@@ -1,5 +1,5 @@
 .pesquisa__main{
-    height: 130px;
+    height: 14vh;
     background-color: var(--cor-principal);
 }
 .pesquisa__header{
@@ -10,10 +10,9 @@
     height: 100%;
     margin-left: 0.15em;
 }
-.pesquisa__logo{
-    width: 18em;
+.pesquisa__logo img{
     background-repeat: no-repeat;
-    height: 4em;
+    height: 6.4vh;
     margin-top: -20px;
     cursor: pointer;
     margin-left: -0.19em;
@@ -24,9 +23,9 @@
     background-color: #fff;
     outline: none;
     border: none;
-    height: 3.2em;
-    width: 40em;
-    margin-left: 4.9em;
+    height: 5.12vh;
+    width: 33.333vw;
+    margin-left: 9em;
     margin-right: 16em;
     font-size: 1.1em;
     padding-left: 2em;
@@ -45,8 +44,8 @@
     border-radius: 10px;
     border: 0px solid black;
     margin-left: -12em;
-    width: 10em;
-    height: 3em;
+    width: 8.333vw;
+    height: 4.8vh;
 }
 .pesquisa__login:hover{
     background-color: #8216ca;
@@ -56,27 +55,32 @@
     background-color: black;
     border-radius: 10px;
     margin-left: 4em;
-    width: 10em;
-    height: 3em;
+    width: 8.333vw;
+    height: 4.8vh;
 }
 .pesquisa{
     background: linear-gradient(0deg, rgba(255,255,255,1) 30%, rgba(163,24,255,1) 100%);
     /* background-color: red; */
 }
 .container__pergunta{
+    display: flex;
     border-radius: 20px;
     background-color: rgba(214, 214, 214, .5);
     padding-top: 2.5em;
-    padding-bottom: 4em;
+    justify-content: center;
+    align-items: center;
+    /* padding-bottom: 4em; */
+    /* flex-direction: column; */
 }
 .caixa__pergunta{
     background-color: rgba(214, 214, 214, .6);
     border-radius: 18px;
     cursor: pointer;
-    margin-left: 3em;
-    margin-right: 3em;
-    margin-bottom: 5em;
-    height: 12em;
+    /* margin-left: 3em; */
+    /* margin-right: 3em; */
+    margin-bottom: 2.5em;
+    height: 19.2vh;
+    width: 66.667vw ;
 }
 .caixa__pergunta h2{
     font-weight: lighter;
@@ -87,6 +91,47 @@
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 0.3em;
+}
+.container__pergunta .mostrar{
+    font-weight: bold;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 5vh;
+}
+.ha__perguntas{
+    /* display: none; */
+}
+.caixa__pergunta2{
+    background-color: rgba(214, 214, 214, .6);
+    border-radius: 18px;
+    margin-bottom: 2.5em;
+    height: 19.2vh;
+    width: 66.667vw ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+.nao__ha__perguntas{
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+}
+.nao__ha__perguntas .a{
+    border-radius: 16px;
+    background-color: #000;
+    color: #fff;
+    height: 6vh;
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
 }
 .container__pergunta .mostrar{
     font-weight: bold;

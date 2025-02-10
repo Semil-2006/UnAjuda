@@ -1,24 +1,23 @@
 .resposta{
     background: linear-gradient(0deg, rgba(255,255,255,1) 30%, rgba(163,24,255,1) 100%);
     display: flex;
+    justify-content: center;
 }
 .resposta__container{
     border-radius: 20px;
     background-color: rgba(214, 214, 214, .5);
-    margin-top: 4.5em;
+    /* margin-top: 4.5em; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90em;
-    margin-left: 5em;
-    
+    width: 73vw;
 }
 .pergunta{
     margin-bottom: 4.5em;
     border-radius: 18px;
     background-color: rgba(214, 214, 214, .6);
     margin-top: 2em;
-    width: 80em;
+    width: 66.667vw;
     display: flex;
     flex-direction: column;
 }
@@ -30,7 +29,7 @@
 }
 .pergunta__cabecalho img{
     padding-right: 1em;
-    width: 4em;
+    width: 3.333vw;
 }
 .pergunta__cabecalho a{
     font-weight: bold;
@@ -49,7 +48,7 @@
     padding-top: 0.6em;
 }
 .pergunta__img{
-    width: 60em;
+    width: 50vw;
     margin-left: 10em;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -63,7 +62,7 @@
     border-radius: 39px;
     margin-right: 3em;
     margin-left: 3em;
-    height: 17em;
+    height: 14.167vw;
     padding-top: 1.3em;
     padding-left: 2em;
     padding-right: 2em;
@@ -85,5 +84,23 @@
 }
 .denuncia img{
     padding-right: 0.5em;
-    width: 2.5em;
+    width: 2.083vw;
+}
+
+.resposta__formulario textarea{
+    width: 66.667vw;
+}
+.resposta__formulario button{
+    border-radius: 20px;
+    height: 5.6vh;
+    width: 13vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    /* margin-left: 11.2em; */
+    background-color: #B543FF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }

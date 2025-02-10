@@ -42,17 +42,26 @@
     <section class="pesquisa">
         <div class="center">
             <div class="container__pergunta">
+                <div class="ha__perguntas">
                 {% if perguntas %}
                     {% for pergunta in perguntas %}
-                    <div class="caixa__pergunta">
-                        <h2>{{ pergunta.nome_usuario }}</h2>  <!-- Apenas o nome do usuário aqui -->
-                        <p><a href="/resposta/{{ pergunta.id }}">{{ pergunta.pergunta }}</a></p> <!-- Link na pergunta -->
+                    
+                        <div class="caixa__pergunta">
+                            <h2>{{ pergunta.nome_usuario }}</h2>  <!-- Apenas o nome do usuário aqui -->
+                            <p><a href="/resposta/{{ pergunta.id }}">{{ pergunta.pergunta }}</a></p> <!-- Link na pergunta -->
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+
+                    <div class="nao__ha__perguntas">
                 {% else %}
-                    <h2>Não há perguntas disponíveis.</h2>
-                    <a href="/pergunta" class="registro-header-btn">Adicionar Nova Pergunta</a>
-                {% endif %}
+
+                    <div class="caixa__pergunta2">
+                        <h2>Não há perguntas disponíveis.</h2>
+                        <a href="/pergunta" class="registro-header-btn">Adicionar Pergunta</a>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </section>
